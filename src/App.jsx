@@ -1,19 +1,13 @@
 import './App.css'
 import Navbar from "./components/Navbar";
-import SalesNotiBanner from "./components/SalesNotiBanner";
-import Banner from "./components/Banner";
-import HomeContent from './components/HomeContent';
 import Footer from './components/Footer';
-import HomeInfoSection from './components/HomeInfoSection';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   return (
     <div>
         <Navbar/>
-        <SalesNotiBanner/>
-        <Banner/>
-        <HomeContent/>
-        <HomeInfoSection/>
+        <Outlet/>
         <Footer/>
     </div>
   );

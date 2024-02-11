@@ -1,5 +1,6 @@
 import React from 'react'
 import logo from '../assets/ffp-logo.png'
+import { Link } from 'react-router-dom'
 
 export default function Footer() {
     return (
@@ -13,9 +14,9 @@ export default function Footer() {
                                 <div className="row gy-4 gy-lg-0 justify-content-xl-between">
                                     <div className="col-12 col-md-3 col-lg-2 col-xl-2">
                                         <div className="widget">
-                                            <a href="#!">
+                                            <Link to={'/'}>
                                                 <img src={logo} alt="BootstrapBrain Logo" height="60px"/>
-                                            </a>
+                                            </Link>
                                         </div>
                                     </div>
                                     <div className="col-12 col-md-3 col-lg-2 col-xl-2">
@@ -23,19 +24,19 @@ export default function Footer() {
                                             <h5 className="widget-title mb-4">Online Shopping</h5>
                                             <ul className="list-unstyled">
                                                 <li className="mb-2">
-                                                    <a href="#!" className="link-secondary text-decoration-none">Men</a>
+                                                    <Link to={'/category/men'} className="link-secondary text-decoration-none">Men</Link>
                                                 </li>
                                                 <li className="mb-2">
-                                                    <a href="#!" className="link-secondary text-decoration-none">Women</a>
+                                                    <Link to={'/category/women'} className="link-secondary text-decoration-none">Women</Link>
                                                 </li>
                                                 <li className="mb-2">
-                                                    <a href="#!" className="link-secondary text-decoration-none">Kids</a>
+                                                    <Link to={'/category/kids'} className="link-secondary text-decoration-none">Kids</Link>
                                                 </li>
                                                 <li className="mb-2">
-                                                    <a href="#!" className="link-secondary text-decoration-none">Sports</a>
+                                                    <Link to={'/category/sports'} className="link-secondary text-decoration-none">Sports</Link>
                                                 </li>
                                                 <li className="mb-0">
-                                                    <a href="#!" className="link-secondary text-decoration-none">Professional</a>
+                                                    <Link to={'/category/professional'} className="link-secondary text-decoration-none">Professional</Link>
                                                 </li>
                                             </ul>
                                         </div>
@@ -45,19 +46,19 @@ export default function Footer() {
                                             <h5 className="widget-title mb-4">Customer Policies</h5>
                                             <ul className="list-unstyled">
                                                 <li className="mb-2">
-                                                    <a href="#!" className="link-secondary text-decoration-none">Track Orders</a>
+                                                    <Link to={'/track_orders'} className="link-secondary text-decoration-none">Track Orders</Link>
                                                 </li>
                                                 <li className="mb-2">
-                                                    <a href="#!" className="link-secondary text-decoration-none">Contact Us</a>
+                                                    <Link to={'/contact'} className="link-secondary text-decoration-none">Contact Us</Link>
                                                 </li>
                                                 <li className="mb-2">
-                                                    <a href="#!" className="link-secondary text-decoration-none">Cancellation</a>
+                                                    <Link to={'/cancellation'} className="link-secondary text-decoration-none">Cancellation</Link>
                                                 </li>
                                                 <li className="mb-2">
-                                                    <a href="#!" className="link-secondary text-decoration-none">Terms of Service</a>
+                                                    <Link to={'/terms_and_services'} className="link-secondary text-decoration-none">Terms of Service</Link>
                                                 </li>
                                                 <li className="mb-0">
-                                                    <a href="#!" className="link-secondary text-decoration-none">Privacy Policy</a>
+                                                    <Link to={'/privacy_policy'} className="link-secondary text-decoration-none">Privacy Policy</Link>
                                                 </li>
                                             </ul>
                                         </div>
@@ -67,19 +68,19 @@ export default function Footer() {
                                             <h5 className="widget-title mb-4">Useful Links</h5>
                                             <ul className="list-unstyled">
                                                 <li className="mb-2">
-                                                    <a href="#!" className="link-secondary text-decoration-none">About Us</a>
+                                                    <Link to={'/about'} className="link-secondary text-decoration-none">About Us</Link>
                                                 </li>
                                                 <li className="mb-2">
-                                                    <a href="#!" className="link-secondary text-decoration-none">Blogs</a>
+                                                    <Link to={'/blogs'} className="link-secondary text-decoration-none">Blogs</Link>
                                                 </li>
                                                 <li className="mb-2">
-                                                    <a href="#!" className="link-secondary text-decoration-none">FAQs</a>
+                                                    <Link to={'/faqs'} className="link-secondary text-decoration-none">FAQs</Link>
                                                 </li>
                                                 <li className="mb-2">
-                                                    <a href="#!" className="link-secondary text-decoration-none">Corporate Information</a>
+                                                    <Link to={'/corporate_information'} className="link-secondary text-decoration-none">Corporate Information</Link>
                                                 </li>
                                                 <li className="mb-0">
-                                                    <a href="#!" className="link-secondary text-decoration-none">Site Map</a>
+                                                    <Link to={'/site_map'} className="link-secondary text-decoration-none">Site Map</Link>
                                                 </li>
                                             </ul>
                                         </div>

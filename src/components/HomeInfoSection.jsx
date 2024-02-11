@@ -13,7 +13,7 @@ export default function HomeInfoSection() {
             <HomeInfo title={'Join the Fashion Fusion Community'} align={"start"} desc={"Join our community of fashion enthusiasts and trendsetters to share your style inspiration, connect with like-minded individuals, and be the first to know about exclusive offers and promotions. Sign up for our newsletter to receive updates straight to your inbox and unlock special discounts on your favorite fashion finds."}/>
         </div>
         <div className='col-lg-5 d-flex flex-column'>
-            <img src={offerImage} className='w-75 mb-5'/><br />
+            <img src={offerImage} className='w-100 mb-5'/><br />
             <HomeInfo title={'Experience Fashion Fusion Today'} align={"end"} desc={"Whether you're seeking timeless classics or the hottest trends of the season, Fashion Fusion is your ultimate destination for all things fashion. Start exploring our collection now and discover the perfect pieces to elevate your style and make a statement wherever you go."}/>
         </div>
     </div>

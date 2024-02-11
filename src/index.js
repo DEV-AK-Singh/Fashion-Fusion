@@ -1,9 +1,110 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import Category from './pages/Category';
+import Wishlist from './pages/Wishlist';
+import Profile from './pages/Profile';
+import About from './pages/About';
+import Blogs from './pages/Blogs';
+import FAQs from './pages/FAQs';
+import CorpInfo from './pages/CorpInfo';
+import SiteMap from './pages/SiteMap';
+import ProductDetails from './pages/ProductDetails';
+import Checkout from './pages/Checkout';
+import Payment from './pages/Payment';
+import Confirmation from './pages/Confirmation';
+import TrackOrders from './pages/TrackOrders';
+import Contact from './pages/Contact';
+import Cancellation from './pages/Cancellation';
+import TermsService from './pages/TermsService';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+
+const router = createBrowserRouter([
+  {
+    path:'/',
+    element:<App/>,
+    children:[
+      {
+        path:'/',
+        element:<HomePage/>
+      },
+      {
+        path:'/category/:slug',
+        element:<Category/>
+      },
+      {
+        path:'/product/:id',
+        element:<ProductDetails/>
+      },
+      {
+        path:'/checkout',
+        element:<Checkout/>
+      },
+      {
+        path:'/payment',
+        element:<Payment/>
+      },
+      {
+        path:'/confirmation',
+        element:<Confirmation/>
+      },
+      {
+        path:'/wishlist',
+        element:<Wishlist/>
+      },
+      {
+        path:'/profile',
+        element:<Profile/>
+      },
+      {
+        path:'/about',
+        element:<About/>
+      },
+      {
+        path:'/blogs',
+        element:<Blogs/>
+      },
+      {
+        path:'/faqs',
+        element:<FAQs/>
+      },
+      {
+        path:'/corporate_information',
+        element:<CorpInfo/>
+      },
+      {
+        path:'/site_map',
+        element:<SiteMap/>
+      },
+      {
+        path:'/track_orders',
+        element:<TrackOrders/>
+      },
+      {
+        path:'/contact',
+        element:<Contact/>
+      },
+      {
+        path:'/cancellation',
+        element:<Cancellation/>
+      },
+      {
+        path:'/terms_and_services',
+        element:<TermsService/>
+      },
+      {
+        path:'/privacy_policy',
+        element:<PrivacyPolicy/>
+      },
+    ]
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
-  <App />
+  <RouterProvider router={router}></RouterProvider>
 );
 
