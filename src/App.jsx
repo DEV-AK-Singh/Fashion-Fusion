@@ -4,6 +4,7 @@ import SalesNotiBanner from "./components/SalesNotiBanner";
 import Banner from "./components/Banner";
 import HomeContent from './components/HomeContent';
 import Footer from './components/Footer';
+import HomeInfoSection from './components/HomeInfoSection';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <SalesNotiBanner/>
         <Banner/>
         <HomeContent/>
+        <HomeInfoSection/>
         <Footer/>
     </div>
   );
