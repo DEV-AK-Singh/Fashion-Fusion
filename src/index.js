@@ -21,6 +21,11 @@ import Cancellation from './pages/Cancellation';
 import TermsService from './pages/TermsService';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Auth from './pages/Auth';
+import Admin from './admin/Admin';
+import AdminCategory from './admin/Forms/AdminCategory';
+import AdminProducts from './admin/Forms/AdminProducts';
+import AdminOrders from './admin/Tables/AdminOrders';
+import AdminUsers from './admin/Tables/AdminUsers';
 
 const router = createBrowserRouter([
   {
@@ -28,7 +33,7 @@ const router = createBrowserRouter([
     element:<App/>,
     children:[
       {
-        path:'/',
+        index:true,
         element:<HomePage/>
       },
       {
@@ -105,6 +110,28 @@ const router = createBrowserRouter([
       },
     ]
   },
+  {
+    path:'/admin',
+    element: <Admin/>,
+    children: [
+      {
+        path:'/admin/category',
+        element:<AdminCategory/>
+      },
+      {
+        path:'/admin/products',
+        element:<AdminProducts/>
+      },
+      {
+        path:'/admin/orders',
+        element:<AdminOrders/>
+      },
+      {
+        path:'/admin/users',
+        element:<AdminUsers/>
+      },
+    ]
+  }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
