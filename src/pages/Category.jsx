@@ -452,7 +452,7 @@ export default function Category() {
               </div>
             </div>
             <div className='border'>
-                <div className="row my-4 mx-auto"> {/*product card*/}
+                <div className="d-flex flex-wrap row my-4 mx-auto"> {/*product card*/}
                     <div className="col-3 mb-4">
                         <div className="card d-flex flex-wrap justify-content-end rounded-0" style={{width: "100%"}}>
                             <img src={men1} height="300rem" className="card-img-top" alt="..."/>
