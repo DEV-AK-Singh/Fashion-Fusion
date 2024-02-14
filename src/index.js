@@ -123,6 +123,10 @@ const router = createBrowserRouter([
         element:<AdminProducts/>
       },
       {
+        path:'/admin',
+        element:<AdminOrders/>
+      },
+      {
         path:'/admin/orders',
         element:<AdminOrders/>
       },
