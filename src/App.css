@@ -42,7 +42,6 @@ input[type="color"]:focus,
   color: #b30753;
 }
 
-<<<<<<< HEAD
 .body{
   display: flex;
   justify-content: center;
@@ -116,7 +115,6 @@ tbody tr:hover {
   box-shadow: 0 0.9rem 0.9rem rgba(23, 8, 84, 0.333);
   background-color: rgb(235, 244, 244);
 }
-=======
 .hello{
   background-color: rgb(222, 235, 246);
 }
@@ -142,4 +140,3 @@ tbody tr:hover {
   font-weight: bold;
   color: rgb(78, 76, 76);
 }
->>>>>>> 9cce8ec2d434fcdb21144b778b34aaf560deab94

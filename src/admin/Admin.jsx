@@ -73,8 +73,6 @@ export default function Admin() {
             </ul>
           </div>
         </div>
-        <input type='file' accept='image/*' placeholder='choose' onChange={fn}/>
-        <input type='file' accept='image/*' multiple placeholder='choose' onChange={fns}/>
         <Outlet />
       </div>
     </div>
