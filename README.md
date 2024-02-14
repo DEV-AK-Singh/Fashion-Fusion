@@ -1,10 +1,17 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+# Priyanshu
+>>>>>>> 9b853047794fb3b8d0d7b9096d90b9ecb5c16f11
 =======
 # john
 
 # Abhishek
 
->>>>>>> cbc49157a8d72752c0ec2d27138f34deca9993e2
+# Ankit
+
+# hello world
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

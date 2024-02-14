@@ -20,6 +20,7 @@ import Contact from './pages/Contact';
 import Cancellation from './pages/Cancellation';
 import TermsService from './pages/TermsService';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import Auth from './pages/Auth';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path:'/',
         element:<HomePage/>
+      },
+      {
+        path:'/auth',
+        element:<Auth/>
       },
       {
         path:'/category/:slug',
