@@ -2,31 +2,31 @@ import React from 'react'
 import { Outlet, NavLink } from 'react-router-dom'
 import './assets/Admin.css'
 import { login, signUp } from '../helper/Auth'
-import { uploadMultipleFiles, uploadSingleFile } from '../helper/UploadFiles'
+import { uploadSingleFile } from '../helper/UploadFiles'
 
 export default function Admin() {
   // signUp('abhishek',7999456558,'singh.abhishek151019@gmail.com','abhi@1510','sec-2','bhilai','chhattisgarh','india',490001)
   // .then((data)=>{console.log(data)});
-  
+
   // login('singh.abhishek151019@gmail.com','abhi@1510')
   // .then((data)=>{console.log(data)});
 
-  const fn = (e) => {
-      const file = e.target.files[0];
-      uploadSingleFile(file,'test','myimages').then((url)=>{
-        console.log(url);
-      })
-  }
+  // const fn = (e) => {
+  //   const file = e.target.files[0];
+  //   uploadSingleFile(file, 'test', 'myimages').then((url) => {
+  //     console.log(url);
+  //   })
+  // }
 
-  const fns = (e) => {
-    const obj = e.target.files;
-    const files = Object.keys(obj).map((key) => [key, obj[key]]);
-    files.forEach((file)=>{
-      uploadSingleFile(file[1],'test','myimages').then((url)=>{
-        console.log(url);
-      });
-    });
-}
+  // const fns = (e) => {
+  //   const obj = e.target.files;
+  //   const files = Object.keys(obj).map((key) => [key, obj[key]]);
+  //   files.forEach((file) => {
+  //     uploadSingleFile(file[1], 'test', 'myimages').then((url) => {
+  //       console.log(url);
+  //     });
+  //   });
+  // }
 
   return (
     <div>
@@ -38,22 +38,22 @@ export default function Admin() {
           <hr />
           <ul className="nav nav-pills flex-column mb-auto">
             <li className="nav-item">
-              <NavLink to={"/admin/orders"} className={({isActive})=>(isActive)?"active nav-link text-white":"nav-link text-white"}>
+              <NavLink to={"/admin/orders"} className={({ isActive }) => (isActive) ? "active nav-link text-white" : "nav-link text-white"}>
                 Orders
               </NavLink>
             </li>
             <li>
-              <NavLink to={"/admin/users"} className={({isActive})=>(isActive)?"active nav-link text-white":"nav-link text-white"}>
+              <NavLink to={"/admin/users"} className={({ isActive }) => (isActive) ? "active nav-link text-white" : "nav-link text-white"}>
                 Users
               </NavLink>
             </li>
             <li>
-              <NavLink to={"/admin/category"}  className={({isActive})=>(isActive)?"active nav-link text-white":"nav-link text-white"}>
+              <NavLink to={"/admin/category"} className={({ isActive }) => (isActive) ? "active nav-link text-white" : "nav-link text-white"}>
                 Categories
               </NavLink>
             </li>
             <li>
-              <NavLink to={"/admin/products"}  className={({isActive})=>(isActive)?"active nav-link text-white":"nav-link text-white"}>
+              <NavLink to={"/admin/products"} className={({ isActive }) => (isActive) ? "active nav-link text-white" : "nav-link text-white"}>
                 Products
               </NavLink>
             </li>

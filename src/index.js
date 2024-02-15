@@ -26,6 +26,7 @@ import AdminCategory from './admin/Forms/AdminCategory';
 import AdminProducts from './admin/Forms/AdminProducts';
 import AdminOrders from './admin/Tables/AdminOrders';
 import AdminUsers from './admin/Tables/AdminUsers';
+import Cart from './pages/Cart';
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path:'/product/:id',
         element:<ProductDetails/>
+      },
+      {
+        path:'/cart',
+        element:<Cart/>
       },
       {
         path:'/checkout',
