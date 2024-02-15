@@ -1,16 +1,6 @@
 import React from 'react'
-// import Purple from '..assets/purple.jpg'
 
-// Table
-
-// Profile Picture (optional)
-// First Name
-// Phone Number
-// Email Address
-// City
-// Postal/ZIP Code 
-
-export default function AdminUsers() {
+export default function ProductsTable() {
   return (
     <div className='body' >
       <main className="table">
