@@ -56,8 +56,8 @@ export default function Profile() {
            <a className='ms-3 mt-4 text-decoration-none fw-bold ' href="">Edit</a>
           </div>
             <div className='input-box '>
-                 <input className='ms-4' type="text" placeholder='First Name' /> 
-                 <input style={{marginLeft:"10px"}} type="text" placeholder='Last Name' />
+                 <input className='ms-4 rounded' type="text" placeholder=' First Name' /> 
+                 <input className='rounded' style={{marginLeft:"10px"}} type="text" placeholder=' Last Name' />
             </div>
 
             <h5 className='mt-3' style={{margin:"30px"}}>Your Gender</h5>
@@ -77,17 +77,17 @@ export default function Profile() {
                   <a className='ms-3 mt-4 text-decoration-none fw-bold ' href="">Edit</a>
              </div>
 
-             <input className='ms-4' type="text"placeholder='Enter your Email..' />
+             <input  className='ms-4 rounded' type="text"placeholder=' Enter your Email..' />
              
              <div className='d-flex ms-4' >
              <h5 className='mb-4 mt-4'>Mobile No.</h5>
              <a className='ms-3 mt-4 text-decoration-none fw-bold ' href="">Edit</a>
              </div>
 
-             <input className='ms-4' type="text"placeholder='' />
+             <input className='ms-4 rounded' type="text"placeholder='' />
              < br />
              {/* <button  className='ms-4 mt-5'>submit</button> */}
-             <input  class="btn btn-primary ms-4 mt-4" type="submit" value="Submit"></input>
+             <input  class="btn btn-primary ms-4 mt-4 " type="submit" value="Submit"></input>
               <br /><hr />
              <div className='ms-4 mt-5'>
               <h4>FAQs</h4>
