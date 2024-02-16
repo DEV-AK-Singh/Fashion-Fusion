@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import logo from '../assets/ffp-logo.png'
 import { Link } from 'react-router-dom'
+import { cartContext } from '../App'
 
 export default function Navbar() {
+    const {cart,addToCart,removeFromCart,clearCart} = useContext(cartContext);
     return (
         <nav className="navbar navbar-expand-lg bg-light">
             <div className="container-fluid px-lg-5">
@@ -34,12 +36,13 @@ export default function Navbar() {
                     </form>
                     <ul className="navbar-nav mb-2 mb-lg-0 ms-lg-3 fw-bold d-lg-flex d-none">
                         <Link to={'/cart'}>
-                            <li className="nav-item d-flex align-items-center btn cs-btn-primary py-2 rounded rounded-circle">
+                            <li className="nav-item position-relative d-flex align-items-center btn cs-btn-primary py-2 rounded rounded-circle">
                                 <i class="bi bi-bag"></i>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">{cart.length}</span>
                             </li>
                         </Link>
                         <Link to={'/wishlist'}>
-                            <li className="nav-item d-flex align-items-center btn cs-btn-primary py-2 mx-2 rounded rounded-circle">
+                            <li className="nav-item  d-flex align-items-center btn cs-btn-primary py-2 mx-2 rounded rounded-circle">
                                 <i class="bi bi-heart"></i>
                             </li>
                         </Link>

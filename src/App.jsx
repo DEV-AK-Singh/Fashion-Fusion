@@ -2,14 +2,40 @@ import './App.css'
 import Navbar from "./components/Navbar";
 import Footer from './components/Footer';
 import { Outlet } from 'react-router-dom';
+import { createContext, useState } from 'react';
+
+export const cartContext = createContext();
 
 function App() {
+
+  const [cart, setCart] = useState([]);
+
+  const addToCart = (item) => {
+    setCart([...cart, item]);
+  };
+ 
+  const removeFromCart = (itemId) => {
+    setCart(cart.filter(item => item.pid !== itemId));
+  };
+
+  const clearCart = () => {
+    setCart([]);
+  };
+
+  const cartTotal = () => {
+    let total = 0;
+    cart.forEach((item)=>{
+        total += Number(item.discountedPrice);
+    })
+    return total;
+  }
+
   return (
-    <div>
-        <Navbar/>
-        <Outlet/>
-        <Footer/>
-    </div>
+    <cartContext.Provider value={{cart,addToCart,removeFromCart,clearCart,cartTotal}}>
+      <Navbar/>
+      <Outlet/>
+      <Footer/>
+    </cartContext.Provider>
   );
 }
 

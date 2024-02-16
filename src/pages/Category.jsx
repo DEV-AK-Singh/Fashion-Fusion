@@ -1,12 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ProductCard from '../components/ProductCard'
 import men1 from '../assets/men1.jpg'
 import men2 from '../assets/men2.avif'
 import men3 from '../assets/men3.avif'
 import men4 from '../assets/men4.avif'
 import men5 from '../assets/men5.avif'
+import { fetchProducts } from '../helper/Products'
 
 export default function Category() {
+  let [products,setProducts] = useState([]);
+  useEffect(()=>{
+    fetchProducts().then((res)=>{
+      setProducts(res.docs);
+    })
+  },[]);
   return (
     // Priyanshu
     <div className='my-4'>
@@ -452,14 +459,13 @@ export default function Category() {
             </div>
             <div className='border'>
                 <div className="d-flex flex-wrap row my-4 mx-auto">
-                    <ProductCard/>
-                    <ProductCard/>
-                    <ProductCard/>
+                    {
+                      products ? products.map((doc)=>{return <ProductCard productData={doc.data()}/>}) : 'No Products Available!!'  
+                    }
                 </div>
             </div>
         </div> 
       </div>
-
     </div>
   )
 }

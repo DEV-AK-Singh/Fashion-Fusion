@@ -1,7 +1,20 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-
+import React, {useEffect,useContext} from 'react'
+import { cartContext } from '../App'
+import { Link, useNavigate } from "react-router-dom";
+import { addOrder } from '../helper/Orders';
 export default function Payment() {
+  const navigate = useNavigate();
+  const {cart,addToCart,removeFromCart,clearCart,cartTotal} = useContext(cartContext);
+  const placeOrder = () => {
+    let date = new Date();
+    date = date.toLocaleString();
+    addOrder('oid#1','abhishek','singh.abhishek@gmail.com','7999456558',cart,cart.length,cartTotal(),cartTotal(),'debit card','paid','txn12345','prime','pending',date)
+    .then((res)=>{
+      console.log('Order placed successfully!!');
+      clearCart();
+      navigate('/confirmation');
+    });
+  }
   return (
     <>
       <div class="row p-5 m-0">
@@ -109,12 +122,10 @@ export default function Payment() {
                       </div>
                     </div>
                     <div class="card-footer">
-                      <Link
-                        to={'/confirmation'}
-                        class="subscribe btn btn-primary btn-block shadow-sm"
-                      >
+                      <span className='fw-bold'>Amount: Rs.{cartTotal()}</span>
+                      <button class="subscribe btn btn-primary btn-block shadow-sm float-end" onClick={placeOrder}>
                         Confirm Payment
-                      </Link>
+                      </button>
                     </div>
                   </form>
                 </div>

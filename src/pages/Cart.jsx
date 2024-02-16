@@ -1,8 +1,11 @@
-import React from 'react'
+import React,{useContext} from 'react'
+import { cartContext } from '../App'
 import men1 from '../assets/men1.jpg'
 import { Link } from 'react-router-dom'
 
 export default function Cart() {
+  let {cartTotal} = useContext(cartContext);
+  console.log(cartTotal());
   return (
     <section className="bg-light py-5">
       <div className="container">
@@ -33,8 +36,8 @@ export default function Cart() {
                       </select>
                     </div>
                     <div className="">
-                      <text className="h6">$1156.00</text> <br/>
-                        <small className="text-muted text-nowrap"> $460.00 / per item </small>
+                      <text className="h6">Rs. 1156.00</text> <br/>
+                        <small className="text-muted text-nowrap"> Rs. 460.00 / per item </small>
                     </div>
                   </div>
                   <div className="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">
@@ -66,8 +69,8 @@ export default function Cart() {
                       </select>
                     </div>
                     <div className="">
-                      <text className="h6">$44.80</text> <br/>
-                        <small className="text-muted text-nowrap"> $12.20 / per item </small>
+                      <text className="h6">Rs. 44.80</text> <br/>
+                        <small className="text-muted text-nowrap"> Rs. 12.20 / per item </small>
                     </div>
                   </div>
                   <div className="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">
@@ -99,8 +102,8 @@ export default function Cart() {
                       </select>
                     </div>
                     <div className="">
-                      <text className="h6">$1156.00</text> <br/>
-                        <small className="text-muted text-nowrap"> $460.00 / per item </small>
+                      <text className="h6">Rs. 1156.00</text> <br/>
+                        <small className="text-muted text-nowrap"> Rs. 460.00 / per item </small>
                     </div>
                   </div>
                   <div className="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">
@@ -138,20 +141,20 @@ export default function Cart() {
               <div className="card-body">
                 <div className="d-flex justify-content-between">
                   <p className="mb-2">Total price:</p>
-                  <p className="mb-2">$329.00</p>
+                  <p className="mb-2">Rs. 329.00</p>
                 </div>
                 <div className="d-flex justify-content-between">
                   <p className="mb-2">Discount:</p>
-                  <p className="mb-2 text-success">-$60.00</p>
+                  <p className="mb-2 text-success">-Rs. 60.00</p>
                 </div>
                 <div className="d-flex justify-content-between">
                   <p className="mb-2">TAX:</p>
-                  <p className="mb-2">$14.00</p>
+                  <p className="mb-2">Rs. 14.00</p>
                 </div>
                 <hr />
                 <div className="d-flex justify-content-between">
                   <p className="mb-2">Total price:</p>
-                  <p className="mb-2 fw-bold">$283.00</p>
+                  <p className="mb-2 fw-bold">Rs. {cartTotal()}.00</p>
                 </div>
 
                 <div className="mt-3">
