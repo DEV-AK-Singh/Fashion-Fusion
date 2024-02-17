@@ -188,3 +188,26 @@ ol li {
   text-decoration: underline;
   margin-bottom: 20px;
 }
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+h1 {
+  text-align: center;
+}
+.faq-item {
+  margin-bottom: 20px;
+}
+.question {
+  font-weight: bold;
+}
+.answer {
+  margin-top: 10px;
+}
