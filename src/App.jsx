@@ -30,8 +30,16 @@ function App() {
     return total;
   }
 
+  const productTotal = () => {
+    let total = 0;
+    cart.forEach((item)=>{
+        total += Number(item.price);
+    })
+    return total;
+  }
+
   return (
-    <cartContext.Provider value={{cart,addToCart,removeFromCart,clearCart,cartTotal}}>
+    <cartContext.Provider value={{cart,addToCart,removeFromCart,clearCart,cartTotal,productTotal}}>
       <Navbar/>
       <Outlet/>
       <Footer/>

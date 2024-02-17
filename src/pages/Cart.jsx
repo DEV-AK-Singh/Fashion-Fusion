@@ -2,10 +2,10 @@ import React,{useContext} from 'react'
 import { cartContext } from '../App'
 import men1 from '../assets/men1.jpg'
 import { Link } from 'react-router-dom'
+import CartItem from '../components/CartItem';
 
 export default function Cart() {
-  let {cartTotal} = useContext(cartContext);
-  console.log(cartTotal());
+  let {cart,addToCart,removeFromCart,clearCart,cartTotal,productTotal} = useContext(cartContext);
   return (
     <section className="bg-light py-5">
       <div className="container">
@@ -14,104 +14,15 @@ export default function Cart() {
             <div className="card border shadow-0">
               <div className="m-4">
                 <h4 className="card-title mb-4">Your shopping cart</h4>
-                <div className="row gy-3 mb-4">
-                  <div className="col-lg-5">
-                    <div className="me-lg-5">
-                      <div className="d-flex">
-                        <img src={men1} className="border rounded me-3" style={{width:"96px",height:"96px"}}/>
-                          <div className="">
-                            <a href="#" className="nav-link">Winter jacket for men and lady</a>
-                            <p className="text-muted">Yellow, Jeans</p>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap">
-                    <div className="">
-                      <select style={{width:"100px"}} className="form-select me-4">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                      </select>
-                    </div>
-                    <div className="">
-                      <text className="h6">Rs. 1156.00</text> <br/>
-                        <small className="text-muted text-nowrap"> Rs. 460.00 / per item </small>
-                    </div>
-                  </div>
-                  <div className="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">
-                    <div className="float-md-end">
-                       <a href="#" className="btn btn-light border text-danger icon-hover-danger"> Remove</a>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="row gy-3 mb-4">
-                  <div className="col-lg-5">
-                    <div className="me-lg-5">
-                      <div className="d-flex">
-                        <img src={men1} className="border rounded me-3" style={{width:"96px",height:"96px"}}/>
-                          <div className="">
-                            <a href="#" className="nav-link">Mens T-shirt Cotton Base</a>
-                            <p className="text-muted">Blue, Medium</p>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap">
-                    <div className="">
-                      <select style={{width:"100px"}} className="form-select me-4">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                      </select>
-                    </div>
-                    <div className="">
-                      <text className="h6">Rs. 44.80</text> <br/>
-                        <small className="text-muted text-nowrap"> Rs. 12.20 / per item </small>
-                    </div>
-                  </div>
-                  <div className="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">
-                    <div className="float-md-end">
-                      <a href="#" className="btn btn-light border text-danger icon-hover-danger"> Remove</a>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="row gy-3">
-                  <div className="col-lg-5">
-                    <div className="me-lg-5">
-                      <div className="d-flex">
-                        <img src={men1} className="border rounded me-3" style={{width:"96px",height:"96px"}}/>
-                          <div className="">
-                            <a href="#" className="nav-link">Blazer Suit Dress Jacket for Men</a>
-                            <p className="text-muted">XL size, Jeans, Blue</p>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap">
-                    <div className="">
-                      <select style={{width:"100px"}} className="form-select me-4">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                      </select>
-                    </div>
-                    <div className="">
-                      <text className="h6">Rs. 1156.00</text> <br/>
-                        <small className="text-muted text-nowrap"> Rs. 460.00 / per item </small>
-                    </div>
-                  </div>
-                  <div className="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">
-                    <div className="float-md-end">
-                      <a href="#" className="btn btn-light border text-danger icon-hover-danger"> Remove</a>
-                    </div>
-                  </div>
-                </div>
+                {
+                  (cart.length!=0)
+                  ?
+                  cart.map((item)=>{
+                    return <CartItem item={item}/>
+                  })
+                  :
+                  <h1>Cart is Empty..</h1>
+                }
               </div>
 
               <div className="border-top pt-4 mx-4 mb-4">
@@ -141,11 +52,11 @@ export default function Cart() {
               <div className="card-body">
                 <div className="d-flex justify-content-between">
                   <p className="mb-2">Total price:</p>
-                  <p className="mb-2">Rs. 329.00</p>
+                  <p className="mb-2">Rs. {productTotal()}.00</p>
                 </div>
                 <div className="d-flex justify-content-between">
                   <p className="mb-2">Discount:</p>
-                  <p className="mb-2 text-success">-Rs. 60.00</p>
+                  <p className="mb-2 text-success">-Rs. {productTotal()-cartTotal()}.00</p>
                 </div>
                 <div className="d-flex justify-content-between">
                   <p className="mb-2">TAX:</p>
