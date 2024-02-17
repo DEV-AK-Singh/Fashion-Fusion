@@ -1,117 +1,188 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from "react";
+import { cartContext } from "../App";
+import { Link, useLocation } from "react-router-dom";
+import { fetchOrder } from "../helper/Orders";
 
 export default function Confirmation() {
+  let [orderData, setOrderData] = useState(null);
+  let { state } = useLocation();
+
+  console.log(state);
+
+  useEffect(() => {
+    fetchOrder(state).then((response) => {
+      console.log(response);
+      setOrderData(response.data());
+    });
+  }, []);
+
+  const handlePrint = () => {
+    window.print();
+  };
+
   return (
-    <section class="w-100 p-4 justify-content-center">
-      <div class="card">
+    <section class="justify-content-center">
+      <div class="card ">
         <div class="card-body">
-          <div class="container mb-5 mt-3">
+          <div
+            class="container mb-5 mt-3  border border-1 border-dark p-3"
+            
+          >
             <div class="row d-flex align-items-baseline">
               <div class="col-xl-9">
-                <p style={{color:"#7e8d9f",fontSize:"20px"}}>Invoice &gt;&gt; <strong>ID: #123-123</strong></p>
+                <p className="fs-4">
+                  <strong>Invoice ID: {state}</strong>
+                </p>
               </div>
-              <div class="col-xl-3 float-end">
-                <a class="btn btn-light text-capitalize border-0" data-mdb-ripple-color="dark"><i class="fas fa-print text-primary"></i> Print</a>
-                <a class="btn btn-light text-capitalize" data-mdb-ripple-color="dark"><i class="far fa-file-pdf text-danger"></i> Export</a>
+              <div class="col-xl-3 float-end d-flex justify-content-end ">
+                <a
+                  class="btn btn-light text-capitalize border-0"
+                  data-mdb-ripple-color="dark"
+                  onClick={handlePrint}
+                >
+                  <i class="fas fa-print text-primary"></i> Print
+                </a>
               </div>
-              <hr/>
+              <hr />
             </div>
-
-            <div class="container">
-              <div class="col-md-12">
-                <div class="text-center">
-                  <i class="fab fa-mdb fa-4x ms-0" style={{color:"#5d9fc5"}}></i>
-                  <p class="pt-0">MDBootstrap.com</p>
+            {orderData ? (
+              <div id="Invoice" className="container">
+                <div class="row">
+                  <div class="col-xl-8">
+                    <ul class="list-unstyled">
+                      <li class="text-muted">
+                        <b>To:</b> <span>{orderData.name}</span>
+                      </li>
+                      <li class="text-muted">{orderData.shippingAddress}</li>
+                      <li class="text-muted">
+                        <i class="bi bi-envelope"></i> {orderData.email}
+                      </li>
+                      <li class="text-muted">
+                        <i class="fas fa-phone"></i> {orderData.phone}
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-xl-4">
+                    <ul class="list-unstyled">
+                      <li class="text-muted">
+                        <b>Invoice</b>
+                      </li>
+                      <li class="text-muted">
+                        <i class="fas fa-circle"></i>{" "}
+                        <span class="fw-bold">ID:</span> {state}
+                      </li>
+                      <li class="text-muted">
+                        <i class="fas fa-circle"></i>{" "}
+                        <span class="me-1 fw-bold">Status:</span>
+                        <span class="badge bg-warning text-black fw-bold">
+                          {orderData.orderStatus}
+                        </span>
+                      </li>
+                      <li class="text-muted">
+                        <i class="fas fa-circle"></i>{" "}
+                        <span class="fw-bold">Creation Date: </span>
+                        {orderData.orderDate}
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-
+                <div class="row my-2 mx-1 justify-content-center">
+                  <table class="table">
+                    <thead class="text-white">
+                      <tr>
+                        <th scope="col">Product-ID</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Qty</th>
+                        <th scope="col">Unit Price</th>
+                        <th scope="col">Amount</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {orderData ? (
+                        orderData.product.map((productData, idx) => {
+                          return (
+                            <>
+                              <tr key={idx} className="text-light">
+                                <th scope="row">
+                                  PID-{productData.pid.substring(0, 6)}
+                                </th>
+                                <td>{productData.name}</td>
+                                <td>{productData.Qty}</td>
+                                <td>Rs. {productData.discountedPrice}</td>
+                                <td>
+                                  Rs.{" "}
+                                  {Number(productData.discountedPrice) *
+                                    Number(productData.Qty)}
+                                </td>
+                              </tr>
+                            </>
+                          );
+                        })
+                      ) : (
+                        <>
+                          <tr className="text-light">
+                            <th>No Products..</th>
+                          </tr>
+                        </>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+                <div class="row">
+                  <div class="col-xl-8 font-monospace lh-sm ">
+                    <p class="ms-0 mb-0">
+                      - Transaction Number: [{orderData.txnID}]
+                    </p>
+                    <p class="ms-0 mb-0">
+                      - Invoice Number: [{orderData.orderID}]
+                    </p>
+                    <p class="ms-0 mb-0">- Amount: [{orderData.orderTotal}]</p>
+                    <p class="ms-0 mb-0">
+                      - Payment Method: [{orderData.paymentMethod}]
+                    </p>
+                    <p class="ms-0 mb-0">
+                      - Payment Status: [{orderData.paymentStatus}]
+                    </p>
+                    <p class="ms-0 mb-0">- Date: [{orderData.orderDate}]</p>
+                  </div>
+                  <div class="col-xl-4 text-end">
+                    <ul class="list-unstyled">
+                      <li class="text-muted">
+                        <span class="text-black me-4">SubTotal</span>Rs.{" "}
+                        {orderData.orderTotal}.00
+                      </li>
+                      <li class="text-muted">
+                        <span class="text-black me-4">Tax (0%)</span>Rs. 00.00
+                      </li>
+                      <hr className="w-50 ms-auto" />
+                      <li class="text-black">
+                        <span class="text-black me-3">Total Amount</span>
+                        <span className="fs-5">
+                          Rs. {orderData.orderTotal}.00
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
+            ) : (
+              <h1>Fetching..</h1>
+            )}
 
-
-              <div class="row">
-                <div class="col-xl-8">
-                  <ul class="list-unstyled">
-                    <li class="text-muted">To: <span style={{color:"#5d9fc5"}}>John Lorem</span></li>
-                    <li class="text-muted">Street, City</li>
-                    <li class="text-muted">State, Country</li>
-                    <li class="text-muted"><i class="fas fa-phone"></i> 123-456-789</li>
-                  </ul>
-                </div>
-                <div class="col-xl-4">
-                  <p class="text-muted">Invoice</p>
-                  <ul class="list-unstyled">
-                    <li class="text-muted"><i class="fas fa-circle" style={{color:"#84B0CA"}}></i> <span class="fw-bold">ID:</span>#123-456</li>
-                    <li class="text-muted"><i class="fas fa-circle" style={{color:"#84B0CA"}}></i> <span class="fw-bold">Creation Date: </span>Jun 23,2021</li>
-                    <li class="text-muted"><i class="fas fa-circle" style={{color:"#84B0CA"}}></i> <span class="me-1 fw-bold">Status:</span><span class="badge bg-warning text-black fw-bold">
-                        Unpaid</span></li>
-                  </ul>
-                </div>
+            <hr />
+            <div class="row">
+              <div class="col-xl-10">
+                <p>Thank you for your purchase</p>
               </div>
-
-              <div class="row my-2 mx-1 justify-content-center">
-                <table class="table table-striped table-borderless">
-                  <thead style={{backgroundColor:"#84B0CA"}} class="text-white">
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Description</th>
-                      <th scope="col">Qty</th>
-                      <th scope="col">Unit Price</th>
-                      <th scope="col">Amount</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Pro Package</td>
-                      <td>4</td>
-                      <td>$200</td>
-                      <td>$800</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Web hosting</td>
-                      <td>1</td>
-                      <td>$10</td>
-                      <td>$10</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td>Consulting</td>
-                      <td>1 year</td>
-                      <td>$300</td>
-                      <td>$300</td>
-                    </tr>
-                  </tbody>
-
-                </table>
+              <div class="col-xl-2">
+                <Link to={"/"} class="btn btn-primary text-capitalize w-100 ">
+                  Continue Shoping
+                </Link>
               </div>
-              <div class="row">
-                <div class="col-xl-8">
-                  <p class="ms-3">Add additional notes and payment information</p>
-
-                </div>
-                <div class="col-xl-3">
-                  <ul class="list-unstyled">
-                    <li class="text-muted ms-3"><span class="text-black me-4">SubTotal</span>$1110</li>
-                    <li class="text-muted ms-3 mt-2"><span class="text-black me-4">Tax(15%)</span>$111</li>
-                  </ul>
-                  <p class="text-black float-start"><span class="text-black me-3"> Total Amount</span><span style={{fontSize:"25px"}}>$1221</span></p>
-                </div>
-              </div>
-              <hr/>
-              <div class="row">
-                <div class="col-xl-10">
-                  <p>Thank you for your purchase</p>
-                </div>
-                <div class="col-xl-2">
-                  <Link to={"/"} class="btn btn-primary text-capitalize">Continue Shoping</Link>
-                </div>
-              </div>
-
             </div>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }

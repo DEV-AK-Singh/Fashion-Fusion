@@ -18,7 +18,7 @@ export default function Cart() {
                   (cart.length!=0)
                   ?
                   cart.map((item)=>{
-                    return <CartItem item={item}/>
+                    return <CartItem key={item.pid} item={item}/>
                   })
                   :
                   <h1>Cart is Empty..</h1>
@@ -56,11 +56,15 @@ export default function Cart() {
                 </div>
                 <div className="d-flex justify-content-between">
                   <p className="mb-2">Discount:</p>
-                  <p className="mb-2 text-success">-Rs. {productTotal()-cartTotal()}.00</p>
+                  <p className="mb-2 text-success">- Rs. {productTotal()-cartTotal()}.00</p>
                 </div>
                 <div className="d-flex justify-content-between">
-                  <p className="mb-2">TAX:</p>
-                  <p className="mb-2">Rs. 14.00</p>
+                  <p className="mb-2">Tax (CGST):</p>
+                  <p className="mb-2">Rs. 00.00</p>
+                </div>
+                <div className="d-flex justify-content-between">
+                  <p className="mb-2">Tax (IGST):</p>
+                  <p className="mb-2">Rs. 00.00</p>
                 </div>
                 <hr />
                 <div className="d-flex justify-content-between">

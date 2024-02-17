@@ -3,13 +3,13 @@ import { db } from "../firebase";
 
 // orderID,name,email,phone,product,qty,price,orderTotal,paymentMethod,paymentStatus,txnID,shippingMethod,orderStatus,orderDate
 
-export const addOrder = async (orderID,name,email,phone,product,qty,price,orderTotal,paymentMethod,paymentStatus,txnID,shippingMethod,orderStatus,orderDate) => {
-    const response = await setDoc(doc(db,'orders',orderID),{orderID,name,email,phone,product,qty,price,orderTotal,paymentMethod,paymentStatus,txnID,shippingMethod,orderStatus,orderDate});
+export const addOrder = async (orderID,name,email,phone,product,qty,price,orderTotal,paymentMethod,paymentStatus,txnID,shippingAddress,shippingMethod,orderStatus,orderDate) => {
+    const response = await setDoc(doc(db,'orders',orderID),{orderID,name,email,phone,product,qty,price,orderTotal,paymentMethod,paymentStatus,txnID,shippingAddress,shippingMethod,orderStatus,orderDate});
     return response;
 }
 
-export const updateOrder = async (orderID,name,email,phone,product,qty,price,orderTotal,paymentMethod,paymentStatus,txnID,shippingMethod,orderStatus,orderDate) => {
-    const response = await updateDoc(doc(db,'orders',orderID),{orderID,name,email,phone,product,qty,price,orderTotal,paymentMethod,paymentStatus,txnID,shippingMethod,orderStatus,orderDate});
+export const updateOrder = async (orderID,name,email,phone,product,qty,price,orderTotal,paymentMethod,paymentStatus,txnID,shippingAddress,shippingMethod,orderStatus,orderDate) => {
+    const response = await updateDoc(doc(db,'orders',orderID),{orderID,name,email,phone,product,qty,price,orderTotal,paymentMethod,paymentStatus,txnID,shippingAddress,shippingMethod,orderStatus,orderDate});
     return response;
 }
 

@@ -63,18 +63,17 @@ td img {
 table , th , td {
   padding: 1rem;
   text-align: center;
+  color: white;
 }
 
 table{
-  box-shadow: 0 0.9rem 0.9rem rgba(17, 0, 0, 0.333);
-  margin-left: 80px;
-  background-color: rgb(225, 235, 244); 
+  background-color: #b30753; 
+  color: white;
 }
 
 main.table {
   width: 82vw;
   height: 90vw;
-  background-color: #fff5;
   backdrop-filter: blur(7px);
   border-radius: 8px;
 }
@@ -94,18 +93,6 @@ main.table {
   border-radius: 0.6rem;
   overflow: auto; 
   cursor: pointer;
-}
-
-thead th {
- background-color: #d5d1de;
-}
-
-tbody tr:nth-child(even){
-  background-color: rgba(233, 235, 222, 0.789);
-}
-
-tbody tr:hover {
-  background-color: rgba(244, 119, 119, 0.703);
 }
 
 .table__header1 {
