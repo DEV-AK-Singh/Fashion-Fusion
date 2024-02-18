@@ -1,11 +1,25 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
+import { login } from '../helper/Auth';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 export default function Signin() {
   const [emailId,setEmail] = useState('');
   const [password,setPassword] = useState('');
   const [phoneNumber,setPhoneNumber] = useState('');
   const [otp,setOtp] = useState('');
+  let navigate = useNavigate();
+  const handleSignIn = () => {
+    // console.log('clicked',emailId,password);
+    login(emailId,password).then((data)=>{
+      localStorage.setItem("userData",JSON.stringify(data.userData));
+      console.log(data);
+      setTimeout(()=>{
+        return navigate("/");
+      },2000);
+    })
+  }
+
   return (
     <div className='p-3'>
       <div className='d-flex p-4 border border-danger rounded-4'> 
@@ -25,7 +39,7 @@ export default function Signin() {
                 <input className='mb-3 w-75 p-2 border rounded' type="email" onChange={(e)=>{setEmail(e.target.value)}} placeholder='Enter Email' />
                 <p className='fw-bold text-secondary mb-2 w-75'> Password: </p>
                 <input className='mb-3 w-75 p-2 border rounded' type="password" onChange={(e)=>{setPassword(e.target.value)}} placeholder='Enter Your Password' />
-                <button className='bg-danger text-light w-50 p-1 border-0 rounded-pill'>Sign in</button>
+                <button className='bg-danger text-light w-50 p-1 border-0 rounded-pill' onClick={handleSignIn}>Sign in</button>
               </div>
               <div className='d-flex justify-content-end mt-1'>
               <Link className='text-primary'> Forgot password..?</Link>
@@ -65,7 +79,7 @@ export default function Signin() {
                 <input className='mb-3 w-75 p-2 border rounded' type="tel" onChange={(e)=>{setOtp(e.target.value)}} placeholder='' />
               </div>
               <div className='d-flex justify-content-center'>
-                <button className='bg-primary text-light w-50 p-1 border-0 rounded-pill'>Sign In</button>
+                <button className='bg-primary text-light w-50 p-1 border-0 rounded-pill' >Sign In</button>
               </div>
             </div>
             <div className='d-flex justify-content-evenly align-items-center'>

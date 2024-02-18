@@ -2,14 +2,19 @@ import React, {useEffect,useContext} from 'react'
 import { cartContext } from '../App'
 import { Link, useNavigate } from "react-router-dom";
 import { addOrder } from '../helper/Orders';
+import { v4 as uuidv4 } from 'uuid';
+
 export default function Payment() {
   const navigate = useNavigate();
   const {cart,addToCart,removeFromCart,clearCart,cartTotal} = useContext(cartContext);
   const placeOrder = () => {
-    let oid = 'oid#1';
+    let oid = uuidv4();
+    let txnid = uuidv4();
     let date = new Date();
     date = date.toLocaleString();
-    addOrder(oid,'abhishek','singh.abhishek@gmail.com','7999456558',cart,cart.length,cartTotal(),cartTotal(),'debit card','paid','txn12345','Sector-2, Bhilai, 490001, Chhattishgarh, India','prime','pending',date)
+    let userData = JSON.parse(localStorage.getItem("userData"));
+    // console.log(userData);
+    addOrder(oid,userData.fullname,userData.email,userData.mobile,cart,cart.length,cartTotal(),cartTotal(),'debit card','paid',txnid,userData.address,'prime','pending',date)
     .then(()=>{
       console.log('Order placed successfully!!');
       clearCart();

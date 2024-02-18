@@ -6,7 +6,7 @@ export const login = async (email,password) => {
     if(response.exists()){
         let data = response.data();
         if(data.password == password){
-            return {statusCode:1,statusMsg:"Logged In"};
+            return {statusCode:1,statusMsg:"Logged In",userData:data};
         }else{
             return {statusCode:2,statusMsg:"Wrong Password"};
         }
@@ -21,7 +21,7 @@ export const signUp = async (fullname,mobile,email,password,address,city,state,c
         return {statusCode:0,statusMsg:"User Already Exists"};
     }else{
         let data = await setDoc(doc(db,'users',email),{fullname,mobile,email,password,address,city,state,country,zipcode})
-        return {statusCode:1,statusMsg:"User Already Exists",data};
+        return {statusCode:1,statusMsg:"User Create Successfully",data};
     }
 }
 
