@@ -6,13 +6,14 @@ export default function Payment() {
   const navigate = useNavigate();
   const {cart,addToCart,removeFromCart,clearCart,cartTotal} = useContext(cartContext);
   const placeOrder = () => {
+    let oid = 'oid#1';
     let date = new Date();
     date = date.toLocaleString();
-    addOrder('oid#1','abhishek','singh.abhishek@gmail.com','7999456558',cart,cart.length,cartTotal(),cartTotal(),'debit card','paid','txn12345','prime','pending',date)
-    .then((res)=>{
+    addOrder(oid,'abhishek','singh.abhishek@gmail.com','7999456558',cart,cart.length,cartTotal(),cartTotal(),'debit card','paid','txn12345','Sector-2, Bhilai, 490001, Chhattishgarh, India','prime','pending',date)
+    .then(()=>{
       console.log('Order placed successfully!!');
       clearCart();
-      navigate('/confirmation');
+      navigate('/confirmation',{state:oid});
     });
   }
   return (
@@ -21,35 +22,14 @@ export default function Payment() {
         <div class="col-lg-6 mx-auto">
           <div class="card">
             <div class="card-header">
-              <div class="bg-white shadow-sm pt-4 pl-2 pr-2 pb-2">
-                <ul
-                  role="tablist"
-                  class="nav bg-light nav-pills rounded nav-fill mb-3"
-                >
-                  <li class="nav-item">
-                    <a
-                      data-toggle="pill"
-                      href="#credit-card"
-                      class="nav-link active"
-                    >
-                      {" "}
-                      <i class="fas fa-credit-card mr-2"></i> Credit Card{" "}
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a data-toggle="pill" href="#paypal" class="nav-link active">
-                      {" "}
-                      <i class="fab fa-paypal mr-2"></i> Debit Card{" "}
-                    </a>
-                  </li>
-                </ul>
-              </div>
+              <h3 className='text-center mt-2'>Payment Details</h3>
+              <hr />
               <div class="tab-content">
                 <div id="credit-card" class="tab-pane fade show active pt-3">
                   <form role="form">
-                    <div class="form-group">
+                    <div class="form-group mb-2">
                       <label for="username">
-                        <h6>Card Owner</h6>
+                        <h6>Card Holder Name</h6>
                       </label>
                       <input
                         type="text"
@@ -59,29 +39,40 @@ export default function Payment() {
                         class="form-control"
                       />
                     </div>
-                    <div class="form-group">
+                    <div class="row g-3">
+                      <div class="col">
+                        
+                    <div class="form-group mb-2">
                       <label for="cardNumber">
                         <h6>Card number</h6>
                       </label>
-                      <div class="input-group">
+                      <div class="input-group form-control">
                         <input
                           type="text"
                           name="cardNumber"
                           placeholder="Valid card number"
-                          class="form-control"
+                          class="col-9 border-0 m-0"
                           required
                         />
-                        <div class="input-group-append">
-                          <span class="input-group-text text-muted">
-                            {" "}
-                            <i class="fab fa-cc-visa mx-1"></i>{" "}
-                            <i class="fab fa-cc-mastercard mx-1"></i>{" "}
-                            <i class="fab fa-cc-amex mx-1"></i>{" "}
+                        <div class="input-group-append m-0 text-end col-3">
+                          <span class="text-muted py-2">
+                            <i class="fab fa-cc-visa mx-1"></i>
+                            <i class="fab fa-cc-mastercard mx-1"></i>
+                            <i class="fab fa-cc-amex mx-1"></i>
                           </span>
                         </div>
                       </div>
                     </div>
-                    <div class="row">
+                      </div>
+                      <div class="col">
+                      <label for="inputState" class="form-label">Select Card</label>
+                      <select id="inputState" class="form-select">
+                        <option selected>Debit Card</option>
+                        <option>Credit Card</option>
+                      </select>
+                      </div>
+                    </div>
+                    <div class="row mb-2">
                       <div class="col-sm-8">
                         <div class="form-group">
                           <label>
@@ -96,7 +87,7 @@ export default function Payment() {
                               name=""
                               class="form-control"
                               required
-                            />{" "}
+                            />
                             <input
                               type="number"
                               placeholder="YY"
@@ -117,7 +108,7 @@ export default function Payment() {
                               CVV <i class="fa fa-question-circle d-inline"></i>
                             </h6>
                           </label>
-                          <input type="text" required class="form-control" />
+                          <input type="text" required class="form-control" placeholder="***" />
                         </div>
                       </div>
                     </div>

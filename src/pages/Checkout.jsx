@@ -1,8 +1,11 @@
-import React from 'react'
+import React,{useContext} from 'react'
+import { cartContext } from '../App'
 import men1 from '../assets/men1.jpg'
 import { Link } from 'react-router-dom'
+import CheckoutItem from '../components/CheckoutItem';
 
 export default function Checkout() {
+  let {cart,addToCart,removeFromCart,clearCart,cartTotal,productTotal} = useContext(cartContext);
   return (
     <section class="bg-light py-5">
       <div class="container">
@@ -20,7 +23,6 @@ export default function Checkout() {
                 </div>
               </div>
             </div>
-
             <div class="card shadow-0 border">
               <div class="p-4">
                 <h5 class="card-title mb-3">Guest checkout</h5>
@@ -42,21 +44,21 @@ export default function Checkout() {
                   <div class="col-6 mb-3">
                     <p class="mb-0">Phone</p>
                     <div class="form-outline">
-                      <input type="tel" id="typePhone" value="+48 " class="form-control" />
+                      <input type="tel" id="typePhone" value="+91 " class="form-control" />
                     </div>
                   </div>
 
                   <div class="col-6 mb-3">
                     <p class="mb-0">Email</p>
                     <div class="form-outline">
-                      <input type="email" id="typeEmail" placeholder="example@gmail.com" class="form-control" />
+                      <input type="email" id="typeEmail" placeholder="Type here" class="form-control" />
                     </div>
                   </div>
                 </div>
 
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                  <label class="form-check-label" for="flexCheckDefault">Keep me up to date on news</label>
+                  <label class="form-check-label" for="flexCheckDefault">Keep me up to date on offers</label>
                 </div>
 
                 <hr class="my-4" />
@@ -70,7 +72,7 @@ export default function Checkout() {
                         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked />
                         <label class="form-check-label" for="flexRadioDefault1">
                           Express delivery <br />
-                          <small class="text-muted">3-4 days via Fedex </small>
+                          <small class="text-muted">3-4 days </small>
                         </label>
                       </div>
                     </div>
@@ -80,8 +82,8 @@ export default function Checkout() {
                       <div class="p-3">
                         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
                         <label class="form-check-label" for="flexRadioDefault2">
-                          Post office <br />
-                          <small class="text-muted">20-30 days via post </small>
+                          Normal delivery <br />
+                          <small class="text-muted">6-7 days</small>
                         </label>
                       </div>
                     </div>
@@ -110,9 +112,10 @@ export default function Checkout() {
                   <div class="col-sm-4 mb-3">
                     <p class="mb-0">City</p>
                     <select class="form-select">
-                      <option value="1">New York</option>
-                      <option value="2">Moscow</option>
-                      <option value="3">Samarqand</option>
+                      <option value="1">Bhilai</option>
+                      <option value="2">Durg</option>
+                      <option value="3">Raipur</option>
+                      <option value="3">Bilaspur</option>
                     </select>
                   </div>
 
@@ -131,10 +134,13 @@ export default function Checkout() {
                   </div>
 
                   <div class="col-sm-4 col-6 mb-3">
-                    <p class="mb-0">Zip</p>
-                    <div class="form-outline">
-                      <input type="text" id="typeText" class="form-control" />
-                    </div>
+                    <p class="mb-0">Country</p>
+                    <select class="form-select">
+                      <option value="1">India</option>
+                      <option value="2">Pakistan</option>
+                      <option value="3">Bangladesh</option>
+                      <option value="3">Nepal</option>
+                    </select>
                   </div>
                 </div>
 
@@ -158,24 +164,24 @@ export default function Checkout() {
             </div>
           </div>
           <div class="col-xl-4 col-lg-4 d-flex justify-content-center justify-content-lg-end">
-            <div class="ms-lg-4 mt-4 mt-lg-0" style={{maxWidth:"320px"}}>
+            <div class="ms-lg-4 mt-4 mt-lg-0" >
               <h6 class="mb-3">Summary</h6>
               <div class="d-flex justify-content-between">
                 <p class="mb-2">Total price:</p>
-                <p class="mb-2">$195.90</p>
+                <p class="mb-2">Rs. {productTotal()}.00</p>
               </div>
               <div class="d-flex justify-content-between">
                 <p class="mb-2">Discount:</p>
-                <p class="mb-2 text-danger">- $60.00</p>
+                <p class="mb-2 text-danger">- Rs. {productTotal()-cartTotal()}.00</p>
               </div>
               <div class="d-flex justify-content-between">
                 <p class="mb-2">Shipping cost:</p>
-                <p class="mb-2">+ $14.00</p>
+                <p class="mb-2">+ Rs. 00.00</p>
               </div>
               <hr />
               <div class="d-flex justify-content-between">
                 <p class="mb-2">Total price:</p>
-                <p class="mb-2 fw-bold">$149.90</p>
+                <p class="mb-2 fw-bold">Rs. {cartTotal()}.00</p>
               </div>
 
               <div class="input-group mt-3 mb-4">
@@ -186,50 +192,9 @@ export default function Checkout() {
               <hr />
               <h6 class="text-dark my-4">Items in cart</h6>
 
-              <div class="d-flex align-items-center mb-4">
-                <div class="me-3 position-relative">
-                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill badge-secondary">
-                    1
-                  </span>
-                  <img src={men1} style={{height:"96px",width:"96px"}} class="img-sm rounded border" />
-                </div>
-                <div class="">
-                  <a href="#" class="nav-link">
-                    Gaming Headset with Mic <br />
-                    Darkblue color
-                  </a>
-                  <div class="price text-muted">Total: $295.99</div>
-                </div>
-              </div>
-
-              <div class="d-flex align-items-center mb-4">
-                <div class="me-3 position-relative">
-                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill badge-secondary">
-                    1
-                  </span>
-                  <img src={men1} style={{height:"96px",width:"96px"}} class="img-sm rounded border" />
-                </div>
-                <div class="">
-                  <a href="#" class="nav-link">
-                    Apple Watch Series 4 Space <br />
-                    Large size
-                  </a>
-                  <div class="price text-muted">Total: $217.99</div>
-                </div>
-              </div>
-
-              <div class="d-flex align-items-center mb-4">
-                <div class="me-3 position-relative">
-                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill badge-secondary">
-                    3
-                  </span>
-                  <img src={men1} style={{height:"96px",width:"96px"}} class="img-sm rounded border" />
-                </div>
-                <div class="">
-                  <a href="#" class="nav-link">GoPro HERO6 4K Action Camera - Black</a>
-                  <div class="price text-muted">Total: $910.00</div>
-                </div>
-              </div>
+              {cart.map((item,idx)=>{
+                return <CheckoutItem key={idx} idx={idx} name={item.name} pic={item.Images} price={item.discountedPrice}/>
+              })}
             </div>
           </div>
         </div>
