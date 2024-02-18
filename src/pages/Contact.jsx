@@ -1,6 +1,13 @@
-import React from 'react'
+import React, { useState } from "react";
+
 
 export default function Contact() {
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [comment, setComment] = useState("");
+
+
   return (
     <div>
       <div className='d-flex justify-content-center'>
@@ -41,13 +48,13 @@ export default function Contact() {
             <small>To request a quote our products, contact us directly or fill out the form and we will get back to you promptly.</small>
             <div className='d-flex flex-column my-4'> {/*Form*/}
               <small className='fw-bold mb-3'>Name</small>
-              <input className='border-0 border-bottom mb-3' type="text" placeholder='Enter Your Name' />
+              <input className='border-0 border-bottom mb-3' type="text" onChange={(e) => {setFullName(e.target.value);}} placeholder='Enter Your Name' />
               <small className='fw-bold mb-3'>Email</small>
-              <input className='border-0 border-bottom mb-3' type="email" placeholder='Enter Your Email' />
+              <input className='border-0 border-bottom mb-3' type="email" onChange={(e) => {setEmail(e.target.value);}} placeholder='Enter Your Email' />
               <small className='fw-bold mb-3'>Phone Number</small>
-              <input className='border-0 border-bottom mb-3' type="number" placeholder='Phone Number' />
+              <input className='border-0 border-bottom mb-3' type="number" onChange={(e) => {setMobile(e.target.value);}} placeholder='Phone Number' />
               <small className='fw-bold mb-3'>Comment</small>
-              <textarea className='mb-1' placeholder='Comment'></textarea>
+              <textarea className='mb-1' onChange={(e)=>{setComment(e.target.value);}} placeholder='Comment'></textarea>
             </div>
             <div className='d-flex justify-content-center'>
               <button className='bg-danger text-light rounded-5 w-50'>SEND</button>
