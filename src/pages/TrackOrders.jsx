@@ -5,52 +5,51 @@ import ProductCard from '../components/ProductCard';
 export default function TrackOrders() {
   const [orderData,setOrderData] = useState({});
   const [trackIn,setTrackIn] = useState('');
-  const [err,setErr] =  useState(null);
   
   const handleCheck = () => {
     // console.log('fetching order.....',trackIn);
-    if(trackIn){
-      fetchOrder(trackIn).then((response)=>{
-        // console.log(response.data());
-        try {
-          setOrderData(response.data());
-        } catch (error) { 
-          setErr(error);
-        }
-      });
-    }
+    fetchOrder(trackIn).then((response)=>{
+      // console.log(response.data());
+      setOrderData(response.data());
+    });
     // console.log('fetched order successfully.....');
   }
 
   console.log("orderdata:",orderData);
 
-  if(err){
-    console.log(err);
-  }
-
   return (
-    <div className='container'>
-
-      {
-        (err)?
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-          <strong>Wrong Order ID..</strong> Please enter correct Order ID..
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={()=>{setErr(null)}}></button>
-        </div>:''
-      }
-
-      <div className='w-50 mx-auto my-5 '>
+    <div className='my-5'>
+      
+      <div className='w-50 mx-auto '>
         <input className='form-control mb-2' type="text" placeholder='Enter your order id..' id='input' onChange={(e)=>{setTrackIn(e.target.value)}}/>
         <button className='btn btn-primary' onClick={handleCheck}>Check Now</button>
       </div>
 
       {(Object.keys(orderData).length!=0)?
-      <div>
-        {/* Ankit */}
-        <h1>Order Id: {orderData.orderID}</h1>
-        <h1>Order Status: {orderData.orderStatus}</h1>
-        <h2>Order Amount: {orderData.orderTotal}</h2>
-        <h3>Order Date: {orderData.orderDate}</h3>
+      <div className='trackorder'> 
+        <h2>OrderID: {orderData.orderID}</h2>
+        <br />
+        <h6 className='th6'>Order Status: {orderData.orderStatus}</h6>
+        <br />
+        <div className="tid">
+          <h5>Transaction ID: {orderData.txnID}</h5>
+          <h5>Amount : {orderData.orderTotal}</h5>
+        </div>
+        <br />
+        <div className="tid">
+          <h3>Subtotal</h3>
+          <h3>Rs{orderData.orderTotal}</h3>
+        </div>
+        <hr />
+        <h6 className='shipde'>Shipping & Coustomer Details :</h6>
+        <br />
+        <div className="trackcontent">
+        <h6>Coustomer : {orderData.name}</h6>
+        <h6>Order Date & time : {orderData.orderDate}</h6>
+        </div>
+        <br />
+        <h6>Payment Method: {orderData.paymentMethod}</h6>
+        <h6>Payment Status: {orderData.paymentStatus}</h6>
       </div>  
       :
       ''}
