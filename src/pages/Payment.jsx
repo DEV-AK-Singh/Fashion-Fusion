@@ -119,9 +119,17 @@ export default function Payment() {
                     </div>
                     <div class="card-footer">
                       <span className='fw-bold'>Amount: Rs.{cartTotal()}</span>
-                      <button class="subscribe btn btn-primary btn-block shadow-sm float-end" onClick={placeOrder}>
-                        Confirm Payment
-                      </button>
+                      {
+                        (cart.length==0) ?
+                        <>
+                        <Link class="subscribe btn btn-sm btn-warning btn-block shadow-sm float-end" to={'/'}>
+                          Add Products In Cart
+                        </Link>
+                        </> : 
+                        <button class="subscribe btn btn-sm btn-primary btn-block shadow-sm float-end" onClick={placeOrder}>
+                          Confirm Payment
+                        </button>
+                      }
                     </div>
                   </form>
                 </div>
