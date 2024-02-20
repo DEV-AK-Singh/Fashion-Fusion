@@ -21,8 +21,8 @@ export default function AdminUsers() {
         <section className=" text-center">
           <h1 className='fw-bolder'>USER DETAILS</h1>
         </section>
-        <section>
-          <table className='table__body'>
+        <section className='table__body'>
+          <table>
             <thead>
               <tr>
                 <th>Profile Picture</th>
