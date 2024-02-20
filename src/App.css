@@ -61,13 +61,13 @@ td img {
 }
 
 table , th , td {
-  padding: 1rem;
+  padding: 10px;
   text-align: center;
   color: white;
 }
 
 table{
-  background-color: #b30753; 
+  background-color: rgb(59, 114, 47); 
   color: white;
 }
 
