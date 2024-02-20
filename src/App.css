@@ -63,12 +63,16 @@ td img {
 table , th , td {
   padding: 10px;
   text-align: center;
+}
+
+thead{
+  background-color: rgb(57, 116, 104); 
   color: white;
 }
 
 table{
-  background-color: rgb(59, 114, 47); 
-  color: white;
+  background-color: rgb(41, 182, 145); 
+  
 }
 
 main.table {
@@ -91,6 +95,7 @@ main.table {
   width: 95%;
   max-height: 89%;
   border-radius: 0.6rem;
+  box-shadow: 0 8px 8px  rgba(0, 0, 0, 0.333);
   overflow: auto; 
   cursor: pointer;
 }
