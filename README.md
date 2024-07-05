@@ -53,9 +53,7 @@ Fashion Fusion is a collaborative project aimed at developing a Myntra clone, in
 
 To start the development server:
 
-    ```bash
     npm run start
-    ```
 
 ## Acknowledgements
 
