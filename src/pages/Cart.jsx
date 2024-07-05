@@ -13,7 +13,7 @@ export default function Cart() {
           <div className="col-lg-9">
             <div className="card border shadow-0">
               <div className="m-4">
-                <h4 className="card-title mb-4">Your shopping cart</h4>
+                <h3 className="card-title mb-4">Your shopping cart</h3><hr />
                 {
                   (cart.length!=0)
                   ?
@@ -59,17 +59,21 @@ export default function Cart() {
                   <p className="mb-2 text-success">- Rs. {productTotal()-cartTotal()}.00</p>
                 </div>
                 <div className="d-flex justify-content-between">
-                  <p className="mb-2">Tax (CGST):</p>
-                  <p className="mb-2">Rs. 00.00</p>
+                  <p className="mb-2">Tax (cgst - 6%):</p>
+                  <p className="mb-2 text-danger">+ Rs. {((productTotal()-cartTotal())*0.06).toFixed()}.00</p>
                 </div>
                 <div className="d-flex justify-content-between">
-                  <p className="mb-2">Tax (IGST):</p>
-                  <p className="mb-2">Rs. 00.00</p>
+                  <p className="mb-2">Tax (sgst - 6%):</p>
+                  <p className="mb-2 text-danger">+ Rs. {((productTotal()-cartTotal())*0.06).toFixed()}.00</p>
+                </div>
+                <div className="d-flex justify-content-between">
+                  <p className="mb-2">Shipping cost:</p>
+                  <p className="mb-2 text-danger">+ Rs. 70.00</p>
                 </div>
                 <hr />
                 <div className="d-flex justify-content-between">
                   <p className="mb-2">Total price:</p>
-                  <p className="mb-2 fw-bold">Rs. {cartTotal()}.00</p>
+                  <p className="mb-2 fw-bold">Rs. {cartTotal() + 2*((productTotal()-cartTotal())*0.06).toFixed() + 70}.00</p>
                 </div>
 
                 <div className="mt-3">

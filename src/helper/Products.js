@@ -3,13 +3,13 @@ import { db } from "../firebase";
 
 // name,category,description,price,discountedPrice,saleOFF,Images,Qty,brand,Tags,shippingInfo
 
-export const addProduct = async (pid,name,category,description,price,discountedPrice,saleOFF,Images,Qty,brand,Tags,shippingInfo) => {
-    const response = await setDoc(doc(db,'products',pid),{pid,name,category,description,price,discountedPrice,saleOFF,Images,Qty,brand,Tags,shippingInfo});
+export const addProduct = async (pid,name,category,description,price,discount,discountedPrice,sale,Image,Stock,brand,Tags,shippingAddress) => {
+    const response = await setDoc(doc(db,'products',pid),{pid,name,category,description,price,discount,discountedPrice,sale,Image,Stock,brand,Tags,shippingAddress});
     return response;
 }
 
-export const updateProduct = async (pid,name,category,description,price,discountedPrice,saleOFF,Images,Qty,brand,Tags,shippingInfo) => {
-    const response = await updateDoc(doc(db,'products',pid),{pid,name,category,description,price,discountedPrice,saleOFF,Images,Qty,brand,Tags,shippingInfo});
+export const updateProduct = async (pid,name,category,description,price,discount,discountedPrice,sale,Image,Stock,brand,Tags,shippingAddress) => {
+    const response = await updateDoc(doc(db,'products',pid),{pid,name,category,description,price,discount,discountedPrice,sale,Image,Stock,brand,Tags,shippingAddress});
     return response;
 }
 

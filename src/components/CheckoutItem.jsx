@@ -1,8 +1,8 @@
 import React from "react";
 
-export default function CheckoutItem({name,price,pic,idx}) {
+export default function CheckoutItem({name,price,qty,pic,idx}) {
   return (
-    <div class="d-flex align-items-center mb-4">
+    <div class="d-flex mb-4">
       <div class="me-3 position-relative">
         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill badge-secondary">
           {idx}
@@ -13,11 +13,10 @@ export default function CheckoutItem({name,price,pic,idx}) {
           class="img-sm rounded border"
         />
       </div>
-      <div class="">
-        <a href="#" class="nav-link">
-          {name}
-        </a>
-        <div class="price text-muted">Total: Rs. {price}.00</div>
+      <div>
+        <small>{name}</small><br />
+        <small class="price text-muted">Price: Rs. {price}.00 X {qty}</small><br />
+        <small class="price fw-bold">Total Price: Rs. {price * qty}.00</small>
       </div>
     </div>
   );

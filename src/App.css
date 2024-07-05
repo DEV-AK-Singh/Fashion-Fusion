@@ -1,10 +1,14 @@
-/* primary color #b30753 */
+/* primary color #dc3545 */
 /* secondary color #ffffff */
 
-*{
+* {
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
+}
+
+a{
+  text-decoration: none;
 }
 
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
@@ -24,33 +28,33 @@ input[type="url"]:focus,
 input[type="search"]:focus,
 input[type="tel"]:focus,
 input[type="color"]:focus,
-.uneditable-input:focus {   
+.uneditable-input:focus {
   border-color: none;
   box-shadow: none;
   outline: 0 none;
 }
 
-.cs-btn-primary{
-    background-color: #b30753;
-    color: white;
+.cs-btn-primary {
+  background-color: #dc3545 !important;
+  color: white !important;
 }
 
-.cs-btn-primary:active{
-  color: #b30753!important;
+.cs-btn-primary:active {
+  color: #dc3545 !important;
+  background-color: white !important;
+  border: 1px solid #dc3545 !important;
+}
+
+.cs-btn-secondary {
+  color: #dc3545;
   background-color: white;
-  border: 1px solid #b30753;
 }
 
-.cs-btn-secondary{
-    color: #b30753;
-    background-color: white;
+.cs-text-primary {
+  color: #dc3545;
 }
 
-.cs-text-primary{
-  color: #b30753;
-}
-
-.body{
+.body {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,19 +64,17 @@ td img {
   vertical-align: middle;
 }
 
-table , th , td {
-  padding: 10px;
+tr{
+  vertical-align: middle;
+}
+
+td,th{
+  font-size: 12px;
   text-align: center;
 }
 
-thead{
-  background-color: rgb(57, 116, 104); 
-  color: white;
-}
-
-table{
-  background-color: rgb(41, 182, 145); 
-  
+label{
+  font-size: 12px;
 }
 
 main.table {
@@ -83,64 +85,48 @@ main.table {
 }
 
 .table__header {
- width: 100%;
- height: 5%;
- margin-left: 360px;
- margin-top: 50px;
- color:black;
- font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+  height: 5%;
+  margin-left: 360px;
+  margin-top: 50px;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .table__body {
   width: 95%;
   max-height: 89%;
   border-radius: 0.6rem;
-  box-shadow: 0 8px 8px  rgba(0, 0, 0, 0.333);
-  overflow: auto; 
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.333);
+  overflow: auto;
   cursor: pointer;
 }
 
 .table__header1 {
   width: 100%;
- height: 5%;
- margin-left: 300px;
- margin-top: 50px;
- margin-bottom: 20px;
- color:black;
- font-family: Arial, Helvetica, sans-serif;
+  height: 5%;
+  margin-left: 300px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.admincategory {
-  margin: 70px auto;
-  width: 400px;
-  padding: 40px;
-  box-shadow: 0 0.9rem 0.9rem rgba(23, 8, 84, 0.333);
-  background-color: rgb(235, 244, 244);
-}
-
-.divmain {
-  margin:  auto;
-  width: 400px;
-  padding: 30px;
-  box-shadow: 0 0.9rem 0.9rem rgba(23, 8, 84, 0.333);
-  background-color: rgb(235, 244, 244);
-}
-
-.hello{
+.hello {
   background-color: rgb(222, 235, 246);
 }
 
-.orders-list{
-  background-color:  rgb(222, 235, 246);
+.orders-list {
+  background-color: rgb(222, 235, 246);
 }
 
-.orders-list >h5{
+.orders-list > h5 {
   margin-left: 50px;
 }
 
 .profile-info {
   margin-left: 20px;
-  background-color:rgb(218, 225, 231);
+  background-color: rgb(218, 225, 231);
 }
 
 .profile-info > h5 {
@@ -148,7 +134,7 @@ main.table {
   margin-top: 30px;
 }
 
-.name{
+.name {
   font-weight: bold;
   color: rgb(78, 76, 76);
 }
@@ -176,7 +162,7 @@ ol li {
   margin-bottom: 10px;
 }
 
-#x{
+#x {
   text-decoration: underline;
   margin-bottom: 20px;
 }
@@ -203,31 +189,24 @@ h1 {
 .answer {
   margin-top: 10px;
 }
-#it{
+#it {
   font-size: small;
   font-weight: bold;
 }
-#in{
+#in {
   font-size: small;
 }
-#pp{
+#pp {
   border-radius: 50%;
   border: 2px solid rgb(158, 158, 158);
   width: 40px;
   height: 40px;
   font-size: medium;
-
 }
-#button-addon2{
+#button-addon2 {
   font-size: x-small;
 }
-.del{
+.del {
   font-size: 12px;
   font-weight: bolder;
 }
-
-
-
-
-
-

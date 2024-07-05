@@ -3,22 +3,44 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { Outlet } from "react-router-dom";
 import { createContext, useState, useEffect } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const cartContext = createContext();
 
 function App() {
-  const [user, setUser] = useState(null);
-  let navigate = useNavigate();
 
   const [cart, setCart] = useState([]);
 
   const addToCart = (item) => {
-    setCart([...cart, item]);
+    setCart([...cart, {...item, qty:1}]);
   };
 
   const removeFromCart = (itemId) => {
     setCart(cart.filter((item) => item.pid !== itemId));
+  };
+
+  const getProductFromCart = (itemId) => {
+    return cart.filter((item) => item.pid == itemId)[0];
+  };
+
+  const incQtyFromCart = (itemId) => {
+    let cartItems = cart.map((item) => {
+      if((item.pid == itemId) && (item.qty <= 10)){
+        item.qty += 1;
+      }
+      return item;
+    });
+    setCart(cartItems);
+  };
+
+  const decQtyFromCart = (itemId) => {
+    let cartItems = cart.map((item) => {
+      if((item.pid == itemId) && (item.qty >= 2)){
+        item.qty -= 1;
+      }
+      return item;
+    });
+    setCart(cartItems);
   };
 
   const clearCart = () => {
@@ -28,7 +50,7 @@ function App() {
   const cartTotal = () => {
     let total = 0;
     cart.forEach((item) => {
-      total += Number(item.discountedPrice);
+      total += Number((item.discountedPrice * item.qty));
     });
     return total;
   };
@@ -36,40 +58,25 @@ function App() {
   const productTotal = () => {
     let total = 0;
     cart.forEach((item) => {
-      total += Number(item.price);
+      total += Number((item.price * item.qty));
     });
     return total;
   };
-
-  useEffect(() => {
-    setUser(JSON.parse(localStorage.getItem("userData")));
-    setTimeout(() => {
-      if (JSON.parse(localStorage.getItem("userData")) == null) {
-        navigate("/signin");
-      }
-    }, 2000);
-  }, []);
 
   return (
     <cartContext.Provider
       value={{
         cart,
         addToCart,
+        getProductFromCart,
+        incQtyFromCart,
+        decQtyFromCart,
         removeFromCart,
         clearCart,
         cartTotal,
         productTotal,
       }}
     >
-      {/* {user == null ? (
-        <h1>Fetching user data...</h1>
-      ) : (
-        <>
-          <Navbar />
-          <Outlet />
-          <Footer />
-        </>
-      )} */}
       <Navbar />
       <Outlet />
       <Footer />

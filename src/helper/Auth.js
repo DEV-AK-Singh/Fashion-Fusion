@@ -39,15 +39,13 @@ export const resetPassword = async (email,password) => {
     return response;
 }
 
-// name,email,password,phone,shippingAddress,country,state,city,postalCode,DOB,gender,profilePicture
-
-export const updateUsers = async (email,fullname,mobile,password,address,city,state,country,zipcode,DOB,gender,profilePicture) => {
-    let response = await updateDoc(doc(db,'users',email),{fullname,mobile,password,address,city,state,country,zipcode,DOB,gender,profilePicture})
+export const allUsers = async () => {
+    let response = await getDocs(collection(db,'users'))
     return response;
 }
 
-export const allUsers = async () => {
-    let response = await getDocs(collection(db,'users'))
+export const updateUser = async (fullname,mobile,email,password,address,city,state,country,zipcode) => {
+    let response = await updateDoc(doc(db,'users',email),{fullname,mobile,email,password,address,city,state,country,zipcode})
     return response;
 }
 

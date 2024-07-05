@@ -2,76 +2,30 @@ import React from 'react'
 
 export default function CategoriesTable() {
   return (
-    <div className='body' >
-      <main className="table">
-        <section className="table__header">
-          <h1>User Details</h1>
-        </section>
-        <section className="table__body">
-          <table>
-            <thead>
-              <tr>
-                <th>Profile Picture</th>
-                <th>First Name</th>
-                <th>Phone Number</th>
-                <th>Email Address</th>
-                <th>City</th>
-                <th>Postal/ZIP Code</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><img src='' alt="profile picture" /></td>
-                <td>Ankit</td>
-                <td>9340438468</td>
-                <td>ankitkumar@gmail.com</td>
-                <td>Durg</td>
-                <td>XYZ50</td>
-              </tr>
-              <tr>
-                <td><img src='' alt="profile picture" /></td>
-                <td>Ankit</td>
-                <td>9340438468</td>
-                <td>ankitkumar@gmail.com</td>
-                <td>Durg</td>
-                <td>XYZ50</td>
-              </tr>
-              <tr>
-                <td><img src='' alt="profile picture" /></td>
-                <td>Ankit</td>
-                <td>9340438468</td>
-                <td>ankitkumar@gmail.com</td>
-                <td>Durg</td>
-                <td>XYZ50</td>
-              </tr>
-              <tr>
-                <td><img src='' alt="profile picture" /></td>
-                <td>Ankit</td>
-                <td>9340438468</td>
-                <td>ankitkumar@gmail.com</td>
-                <td>Durg</td>
-                <td>XYZ50</td>
-              </tr>
-              <tr>
-                <td><img src='' alt="profile picture" /></td>
-                <td>Ankit</td>
-                <td>9340438468</td>
-                <td>ankitkumar@gmail.com</td>
-                <td>Durg</td>
-                <td>XYZ50</td>
-              </tr>
-              <tr>
-                <td><img src='' alt="profile picture" /></td>
-                <td>Ankit</td>
-                <td>9340438468</td>
-                <td>ankitkumar@gmail.com</td>
-                <td>Durg</td>
-                <td>XYZ50</td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
-      </main>
+    <div className="w-100">
+      <div class="row g-3 w-75 p-3 mx-auto">
+        <h1 className="mt-5 text-start">Categories Table</h1>
+        <hr />
+        <table class="table">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col" style={{textAlign:"start"}}>#ID</th>
+              <th scope="col" style={{textAlign:"start"}}>Category Name</th>
+              <th scope="col" style={{textAlign:"end"}}>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row" style={{textAlign:"start"}}>X23A567H</th>
+              <td style={{textAlign:"start"}}>Electronics</td>
+              <td style={{textAlign:"end"}}>
+                <button className="btn btn-sm btn-primary px-4 me-2">Edit</button>
+                <button className="btn btn-sm btn-danger px-4">Delete</button>
+              </td>
+            </tr> 
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }

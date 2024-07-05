@@ -1,26 +1,32 @@
-import React, { useContext, useEffect, useState } from "react";
-import { cartContext } from "../App";
-import { Link, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { fetchOrder } from "../helper/Orders";
+import Loader from "../components/Loader";
 
 export default function Confirmation() {
-  let [orderData, setOrderData] = useState(null);
-  let { state } = useLocation();
+  
+  let { orderId } = useParams();
+  let [orderData,setOrderData] = useState(null);
 
-  console.log(state);
-
-  useEffect(() => {
-    fetchOrder(state).then((response) => {
-      console.log(response);
-      setOrderData(response.data());
-    });
-  }, []);
+  useEffect(()=>{
+    fetchOrder(orderId)
+    .then((data)=>{
+      console.log(data.data);
+      if(data.code){
+        setOrderData(data.data);
+      }else{
+        alert("Order not processed!! Try again..");
+      }
+    })
+  },[])
 
   const handlePrint = () => {
     window.print();
   };
 
   return (
+    (!orderData) ? <Loader/>
+    :
     <section class="justify-content-center">
       <div class="card ">
         <div class="card-body">
@@ -31,7 +37,7 @@ export default function Confirmation() {
             <div class="row d-flex align-items-baseline">
               <div class="col-xl-9">
                 <p className="fs-4">
-                  <strong>Invoice ID: {state}</strong>
+                  <strong>Invoice ID: {orderData.orderID}</strong>
                 </p>
               </div>
               <div class="col-xl-3 float-end d-flex justify-content-end ">
@@ -58,7 +64,7 @@ export default function Confirmation() {
                         <i class="bi bi-envelope"></i> {orderData.email}
                       </li>
                       <li class="text-muted">
-                        <i class="fas fa-phone"></i> {orderData.phone}
+                        <i class="fas fa-phone"></i> {orderData.mobile}
                       </li>
                     </ul>
                   </div>
@@ -69,7 +75,7 @@ export default function Confirmation() {
                       </li>
                       <li class="text-muted">
                         <i class="fas fa-circle"></i>{" "}
-                        <span class="fw-bold">ID:</span> {state}
+                        <span class="fw-bold">ID:</span> {orderData.orderID}
                       </li>
                       <li class="text-muted">
                         <i class="fas fa-circle"></i>{" "}
@@ -87,32 +93,32 @@ export default function Confirmation() {
                   </div>
                 </div>
                 <div class="row my-2 mx-1 justify-content-center">
-                  <table class="table">
-                    <thead class="text-white">
+                  <table class="table text-dark">
+                    <thead class="text-dark">
                       <tr>
-                        <th scope="col">Product-ID</th>
+                        <th scope="col"  style={{textAlign:"start"}}>Product-ID</th>
                         <th scope="col">Product Name</th>
                         <th scope="col">Qty</th>
                         <th scope="col">Unit Price</th>
-                        <th scope="col">Amount</th>
+                        <th scope="col"  style={{textAlign:"end"}}>Amount</th>
                       </tr>
                     </thead>
                     <tbody>
                       {orderData ? (
-                        orderData.product.map((productData, idx) => {
+                        orderData.cart.map((productData, idx) => {
                           return (
                             <>
-                              <tr key={idx} className="text-light">
-                                <th scope="row">
-                                  PID-{productData.pid.substring(0, 6)}
+                              <tr key={idx} className="text-dark">
+                                <th scope="row" style={{textAlign:"start"}}>
+                                  PID-{productData.pid}
                                 </th>
                                 <td>{productData.name}</td>
-                                <td>{productData.Qty}</td>
+                                <td>{productData.qty}</td>
                                 <td>Rs. {productData.discountedPrice}</td>
-                                <td>
+                                <td  style={{textAlign:"end"}}>
                                   Rs.{" "}
                                   {Number(productData.discountedPrice) *
-                                    Number(productData.Qty)}
+                                    Number(productData.qty)}
                                 </td>
                               </tr>
                             </>
@@ -120,7 +126,7 @@ export default function Confirmation() {
                         })
                       ) : (
                         <>
-                          <tr className="text-light">
+                          <tr className="text-dark">
                             <th>No Products..</th>
                           </tr>
                         </>

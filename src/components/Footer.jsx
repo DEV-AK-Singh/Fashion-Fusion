@@ -15,7 +15,7 @@ export default function Footer() {
                                     <div className="col-12 col-md-3 col-lg-2 col-xl-2">
                                         <div className="widget">
                                             <Link to={'/'}>
-                                                <img src={logo} alt="BootstrapBrain Logo" height="60px"/>
+                                                <img src={logo} alt="BootstrapBrain Logo" height="160px"/>
                                             </Link>
                                         </div>
                                     </div>
