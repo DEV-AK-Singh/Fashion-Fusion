@@ -20,8 +20,8 @@ Fashion Fusion is a collaborative project aimed at developing a Myntra clone, in
 
 ## Screenshots
 
-![Preview1](cart/2.png)
-![Preview2](cart/3.png)
+![Preview1](Cart/2.png)
+![Preview2](Cart/3.png)
 
 ## Technologies Used
 
