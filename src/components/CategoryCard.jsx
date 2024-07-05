@@ -7,9 +7,9 @@ export default function CategoryCard({link,imgUrl,title,sale}) {
       <Link to={link} style={{textDecoration:'none',color:'white'}}>
         <img src={imgUrl} alt="" className='w-100'/>
         <div className='pt-3'>
-            <h1 className='fs-5 fw-light text-center card-title'>{title}</h1>
-            <h2 className='fs-2 fw-bold text-center card-dis'>{sale} OFF</h2>
-            <h3 className='fs-4 fw-light text-center'>Shop Now</h3>
+            <h1 className='fw-light text-center card-title mb-2' style={{fontSize:"12px"}}>{title}</h1>
+            <h2 className='fs-4 fw-bold text-center card-dis mb-2'>{sale} OFF</h2>
+            <h3 className='fs-6 fw-light text-center'>Shop Now</h3>
         </div>
       </Link>
     </div>

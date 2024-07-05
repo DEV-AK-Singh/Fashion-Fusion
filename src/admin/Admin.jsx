@@ -38,23 +38,43 @@ export default function Admin() {
           <hr />
           <ul className="nav nav-pills flex-column mb-auto">
             <li className="nav-item">
-              <NavLink to={"/admin/orders"} className={({ isActive }) => (isActive) ? "active nav-link text-white" : "nav-link text-white"}>
+              <NavLink to={"/admin/orders"} className={({ isActive }) => (isActive) ? "active nav-link text-white rounded-0" : "nav-link text-white"}>
                 Orders
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink to={"/admin/edit-order"} className={({ isActive }) => (isActive) ? "active nav-link text-white rounded-0" : "nav-link text-white"}>
+                Edit Order
+              </NavLink>
+            </li>
             <li>
-              <NavLink to={"/admin/users"} className={({ isActive }) => (isActive) ? "active nav-link text-white" : "nav-link text-white"}>
+              <NavLink to={"/admin/users"} className={({ isActive }) => (isActive) ? "active nav-link text-white rounded-0" : "nav-link text-white"}>
                 Users
               </NavLink>
             </li>
             <li>
-              <NavLink to={"/admin/category"} className={({ isActive }) => (isActive) ? "active nav-link text-white" : "nav-link text-white"}>
+              <NavLink to={"/admin/edit-user"} className={({ isActive }) => (isActive) ? "active nav-link text-white rounded-0" : "nav-link text-white"}>
+                Edit User
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to={"/admin/categories"} className={({ isActive }) => (isActive) ? "active nav-link text-white rounded-0" : "nav-link text-white"}>
                 Categories
               </NavLink>
             </li>
             <li>
-              <NavLink to={"/admin/products"} className={({ isActive }) => (isActive) ? "active nav-link text-white" : "nav-link text-white"}>
+              <NavLink to={"/admin/add-category"} className={({ isActive }) => (isActive) ? "active nav-link text-white rounded-0" : "nav-link text-white"}>
+                Add Category
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to={"/admin/products"} className={({ isActive }) => (isActive) ? "active nav-link text-white rounded-0" : "nav-link text-white"}>
                 Products
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to={"/admin/add-product"} className={({ isActive }) => (isActive) ? "active nav-link text-white rounded-0" : "nav-link text-white"}>
+                Add Product
               </NavLink>
             </li>
           </ul>
@@ -65,11 +85,10 @@ export default function Admin() {
               <strong>Admin</strong>
             </a>
             <ul className="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-              {/* <li><a className="dropdown-item" href="#">New project...</a></li>
               <li><a className="dropdown-item" href="#">Settings</a></li>
               <li><a className="dropdown-item" href="#">Profile</a></li>
               <li><hr className="dropdown-divider" /></li>
-              <li><a className="dropdown-item" href="#">Sign out</a></li> */}
+              <li><a className="dropdown-item" href="#">Sign out</a></li>
             </ul>
           </div>
         </div>

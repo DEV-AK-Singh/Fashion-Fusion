@@ -1,25 +1,21 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
-import { login } from '../helper/Auth';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { login } from "../helper/Auth";
+import { useNavigate } from "react-router-dom";
 
-export default function Signin() {
-  const [emailId,setEmail] = useState('');
-  const [password,setPassword] = useState('');
+export default function Forgot() {
+
+  const [emailId, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [otp, setOtp] = useState("");
   let navigate = useNavigate();
   const handleSignIn = () => {
-    login(emailId,password).then((data)=>{
-      if(data?.userData){
-        localStorage.setItem("userData",JSON.stringify(data.userData));
-        navigate("/",{replace:true});
-      }else{
-        throw Error(data.statusMsg);
-      }
-    }).catch((err)=>{
-      console.log(err);
-      alert(err);
+    login(emailId, password).then((data) => {
+      localStorage.setItem("userData", JSON.stringify(data.userData));
+      console.log(data);
     });
-  }
+  };
 
   return (
     <>
@@ -30,8 +26,7 @@ export default function Signin() {
         <div className='container mt-4'>
           <div className='d-flex align-items-center flex-column'>
             <input className='mb-3 w-50 p-2 border rounded rounded-0' type="email" onChange={(e)=>{setEmail(e.target.value)}} placeholder='Enter your email here..' />
-            <input className='mb-3 w-50 p-2 border rounded rounded-0' type="password" onChange={(e)=>{setPassword(e.target.value)}} placeholder='Enter your password here..' />
-            <button className='mb-3 bg-danger text-light w-50 p-1 border-0 rounded-0' onClick={handleSignIn}>Sign in</button>
+            <button className='mb-3 bg-danger text-light w-50 p-1 border-0 rounded-0' onClick={handleSignIn}>Send Verification Code</button>
           </div>
           <div className='d-flex justify-content-evenly align-items-center'>
             <div style={{width:"40%"}}><hr /></div>

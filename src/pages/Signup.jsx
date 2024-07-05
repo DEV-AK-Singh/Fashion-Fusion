@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { signUp } from "../helper/Auth";
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function Signup() {
   let navigate = useNavigate();
@@ -27,161 +27,67 @@ export default function Signup() {
       state,
       country,
       zipcode,
-    };
-    // console.log(userData);
-    signUp(fullname,mobile,email,password,address,city,state,country,zipcode).then((data)=>{
+    }; 
+    signUp(fullname,mobile,email,password,address,city,state,country,zipcode)
+    .then((data)=>{
       localStorage.setItem("userData",JSON.stringify(userData));
-      console.log(data);
-      setTimeout(()=>{
-        return navigate("/");
-      },2000);
+      navigate("/",{replace:true});
+    }).catch((err)=>{
+      console.log(err);
+      alert(err);
     });
   }
 
   return (
-    <div className=" p-3">
-      <div className="text-danger my-3">
-        <h1>Create Your Shopping Account Here!</h1>
-      </div>
-      <div className="d-flex justify-content-center">
-        <div className="d-flex  flex-column bg-light border border-danger rounded-5 w-50 p-3">
-          <div className="border-bottom text-secondary fs-6 fw-bold p-4">
-            <div className="d-flex justify-content-between mb-3">
-              <label className=" my-auto">FULL NAME:</label>
-              <input
-                className=" fs-6 border rounded-2 p-2 w-75 ms-3"
-                type="text"
-                onChange={(e) => {
-                  setFullName(e.target.value);
-                }}
-                placeholder="Enter Your Name"
-              />
-            </div>
-            <div className="d-flex justify-content-between mb-3">
-              <label className=" my-auto">PHONE NUMBER:</label>
-              <input
-                className="fs-6 border rounded-2 p-2 w-75 ms-3"
-                type="number"
-                onChange={(e) => {
-                  setMobile(e.target.value);
-                }}
-                placeholder="Your Phone Number"
-              />
-            </div>
-            <div className="d-flex justify-content-between mb-3">
-              <label className=" my-auto">EMAIL:</label>
-              <input
-                className="fs-6 border rounded-2 p-2 w-75 ms-3"
-                type="email"
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-                placeholder="Enter Your Email"
-              />
-            </div>
-            <div className="d-flex justify-content-between mb-3">
-              <label className=" my-auto">PASSWORD:</label>
-              <input
-                className="fs-6 border rounded-2 p-2 w-75 ms-3"
-                type="password"
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-                placeholder="Enter Your Password"
-              />
-            </div>
-            <div className="d-flex justify-content-between mb-3">
-              <label className=" my-auto">ADDRESS:</label>
-              <textarea
-                name=""
-                className="border p-2 w-75"
-                rows="1"
-                onChange={(e) => {
-                  setAddress(e.target.value);
-                }}
-                placeholder="Your Address"
-              ></textarea>
-            </div>
-            <div className="d-flex justify-content-between mb-3">
-              <label className="w-25 my-auto">City:</label>
-              <input
-                className="fs-6 border rounded-2 p-2 w-50 ms-3"
-                type="text"
-                onChange={(e) => {
-                  setCity(e.target.value);
-                }}
-                placeholder="Your City"
-              />
-              <label className="w-25 my-auto ms-3">State:</label>
-              <input
-                className="fs-6 border rounded-2 p-2 w-50 ms-3"
-                type="text"
-                onChange={(e) => {
-                  setState(e.target.value);
-                }}
-                placeholder="Your State"
-              />
-            </div>
-            <div className="d-flex justify-content-between mb-3">
-              <label className="w-25 my-auto">Country:</label>
-              <input
-                className="fs-6 border rounded-2 p-2 w-50 ms-3"
-                type="text"
-                onChange={(e) => {
-                  setCountry(e.target.value);
-                }}
-                placeholder="Your Country"
-              />
-              <label className="w-25 my-auto ms-3">Zipcode:</label>
-              <input
-                className="fs-6 border rounded-2 p-2 w-50 ms-3"
-                type="text"
-                onChange={(e) => {
-                  setZipcode(e.target.value);
-                }}
-                placeholder="Your Zipcode"
-              />
-            </div>
-          </div>
+    <>
+      <div className='w-100 px-3 mt-3'>
+        <div className='text-center fw-bold text-dark'>
+          <h4 className='lh-base'> Sign up to access your account and <br />continue your seamless shopping experience.</h4>
+        </div>
+        <div className='container mt-4'>
           <div>
-            <div style={{ fontSize: "12px" }}>
-              <div className="d-flex mt-2">
-                <input className="ms-3" type="checkbox" />
-                <label className="ms-1">
-                  Subscribe to our newsletter for updates and promotions
-                </label>
+            <div className="m-0 p-0">
+              <div className="row gap-2 mb-2">
+                <input className='p-2 border rounded rounded-0 col' type="text" onChange={(e)=>{setFullName(e.target.value)}} placeholder='Enter Fullname..' />
+                <input className='p-2 border rounded rounded-0 col' type="text" onChange={(e)=>{setMobile(e.target.value)}} placeholder='Enter Mobile..' />
               </div>
-              <div className="d-flex">
-                <input className="ms-3" type="checkbox" />
-                <label className="ms-1 me-1">
-                  I agree to the Terms and Conditions{" "}
-                </label>
-                <div>
-                  <Link to="/terms_and_services" style={{ fontSize: "9px" }}>
-                    {" "}
-                    Learn more
-                  </Link>
+              <div className="row gap-2 mb-2">
+                <input className='p-2 border rounded rounded-0 col' type="email" onChange={(e)=>{setEmail(e.target.value)}} placeholder='Enter Email..' />
+                <input className='p-2 border rounded rounded-0 col' type="password" onChange={(e)=>{setPassword(e.target.value)}} placeholder='Enter Password..' />
+              </div>
+              <div className="row gap-2 mb-2">
+                <input className='p-2 border rounded rounded-0 w-100' type="text" onChange={(e)=>{setAddress(e.target.value)}} placeholder='Enter Address..' />
+              </div>
+              <div className="row gap-2 mb-2">
+                <input className='p-2 border rounded rounded-0 col' type="text" onChange={(e)=>{setCity(e.target.value)}} placeholder='Enter City..' />
+                <input className='p-2 border rounded rounded-0 col' type="text" onChange={(e)=>{setState(e.target.value)}} placeholder='Enter State..' />
+                <input className='p-2 border rounded rounded-0 col' type="text" onChange={(e)=>{setCountry(e.target.value)}} placeholder='Enter Country..' />
+                <input className='p-2 border rounded rounded-0 col' type="text" onChange={(e)=>{setZipcode(e.target.value)}} placeholder='Enter Zipcode..' />
+              </div>
+              <div className="row gap-2 my-2">
+                <div style={{fontSize:"12px"}} className='px-0 py-2 col d-flex justify-content-center align-items-center'>
+                  <input type="checkbox" />
+                  <label className="mx-1">I agree to the Terms and Policies</label>
+                  <Link to="/terms_and_services">Learn more..</Link>
                 </div>
               </div>
-              <div className="d-flex">
-                <input className="ms-3" type="checkbox" />
-                <label className="ms-1 me-1">
-                  I agree to the Privacy Policies
-                </label>
-                <div>
-                  <Link to="/privacy_policy" style={{ fontSize: "9px" }}>
-                    {" "}
-                    Learn more
-                  </Link>
-                </div>
+              <div className="row gap-2 my-2">
+                <button className='col bg-danger text-light w-100 p-1 border-0 rounded-0' onClick={handleCreateAccount}>Sign Up</button>
               </div>
             </div>
           </div>
-          <div className="d-flex justify-content-center mt-4">
-            <button className="btn btn-primary" onClick={handleCreateAccount}>Create Account</button>
+          <div className='d-flex justify-content-evenly align-items-center'>
+            <div style={{width:"40%"}}><hr /></div>
+            <div><small className=' fw-bold text-dark' style={{fontSize:"12px"}}>Sign In Instead</small></div>
+            <div style={{width:"40%"}}><hr /></div>
+          </div>
+          <div className='d-flex align-items-center justify-content-center'>
+            <small className='text-center text-dark text-sm'>Do you have an account? <Link to="/auth/signin" className='text-primary'>Sign-In</Link></small>
+            <h3 className="mx-3">|</h3>
+            <small className='text-center text-dark text-sm'>Forgot password? <Link to="/auth/forgot" className='text-primary'>Reset-Password</Link></small>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

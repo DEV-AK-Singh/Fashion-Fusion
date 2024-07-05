@@ -22,13 +22,25 @@ import TermsService from './pages/TermsService';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Auth from './pages/Auth';
 import Admin from './admin/Admin';
-import AdminCategory from './admin/Forms/AdminCategory';
-import AdminProducts from './admin/Forms/AdminProducts';
-import AdminOrders from './admin/Tables/AdminOrders';
-import AdminUsers from './admin/Tables/AdminUsers';
+import AdminCategory from './admin/Tables/CategoriesTable';
+import AdminProducts from './admin/Tables/ProductsTable';
+import AdminOrders from './admin/Tables/OrdersTable';
+import AdminUsers from './admin/Tables/UsersTable';
 import Cart from './pages/Cart';
 import Signup from './pages/Signup';
 import Signin from './pages/Signin';
+import CategoryForm from './admin/Forms/CategoryForm';
+import ProductForm from './admin/Forms/ProductForm';
+import OrderForm from './admin/Forms/OrderForm';
+import UserForm from './admin/Forms/UserForm';
+import Otp from './pages/Otp';
+import Forgot from './pages/Forgot';
+import NewPassword from './pages/NewPassword';
+import MyProfile from './components/MyProfile';
+import MyOrders from './components/MyOrders';
+import Payments from './components/Payments';
+import AccountSettings from './components/AccountSettings';
+import MyStuffs from './components/MyStuffs';
 
 const router = createBrowserRouter([
   {
@@ -41,15 +53,33 @@ const router = createBrowserRouter([
       },
       {
         path:'/auth',
-        element:<Auth/>
-      },
-      {
-        path:'/signup',
-        element:<Signup/>
-      },
-      {
-        path:'/signin',
-        element:<Signin/>
+        element:<Auth/>,
+        children:[
+          {
+            path:'/auth',
+            element:<Signin/>
+          },
+          {
+            path:'/auth/signin',
+            element:<Signin/>
+          },
+          {
+            path:'/auth/signup',
+            element:<Signup/>
+          },
+          {
+            path:'/auth/otp',
+            element:<Otp/>
+          },
+          {
+            path:'/auth/forgot',
+            element:<Forgot/>
+          },
+          {
+            path:'/auth/new-password',
+            element:<NewPassword/>
+          },
+        ]
       },
       {
         path:'/category/:slug',
@@ -72,7 +102,7 @@ const router = createBrowserRouter([
         element:<Payment/>
       },
       {
-        path:'/confirmation',
+        path:'/confirmation/:orderId',
         element:<Confirmation/>
       },
       {
@@ -81,7 +111,29 @@ const router = createBrowserRouter([
       },
       {
         path:'/profile',
-        element:<Profile/>
+        element:<Profile/>,
+        children:[
+          {
+            path:'/profile',
+            element:<MyProfile/>
+          },
+          {
+            path:'/profile/my-orders',
+            element:<MyOrders/>
+          },
+          {
+            path:'/profile/payments',
+            element:<Payments/>
+          },
+          {
+            path:'/profile/account-settings',
+            element:<AccountSettings/>
+          },
+          {
+            path:'/profile/my-stuffs',
+            element:<MyStuffs/>
+          },
+        ]
       },
       {
         path:'/about',
@@ -96,15 +148,15 @@ const router = createBrowserRouter([
         element:<FAQs/>
       },
       {
-        path:'/corporate_information',
+        path:'/corporate-information',
         element:<CorpInfo/>
       },
       {
-        path:'/site_map',
+        path:'/site-map',
         element:<SiteMap/>
       },
       {
-        path:'/track_orders',
+        path:'/track-orders',
         element:<TrackOrders/>
       },
       {
@@ -116,11 +168,11 @@ const router = createBrowserRouter([
         element:<Cancellation/>
       },
       {
-        path:'/terms_and_services',
+        path:'/terms-and-services',
         element:<TermsService/>
       },
       {
-        path:'/privacy_policy',
+        path:'/privacy-policy',
         element:<PrivacyPolicy/>
       },
     ]
@@ -130,24 +182,40 @@ const router = createBrowserRouter([
     element: <Admin/>,
     children: [
       {
-        path:'/admin/category',
+        path:'/admin',
+        element:<AdminOrders/>
+      },
+      {
+        path:'/admin/categories',
         element:<AdminCategory/>
+      },
+      {
+        path:'/admin/add-category',
+        element:<CategoryForm/>
       },
       {
         path:'/admin/products',
         element:<AdminProducts/>
       },
       {
-        path:'/admin',
-        element:<AdminOrders/>
+        path:'/admin/add-product',
+        element:<ProductForm/>
       },
       {
         path:'/admin/orders',
         element:<AdminOrders/>
       },
       {
+        path:'/admin/edit-order',
+        element:<OrderForm/>
+      },
+      {
         path:'/admin/users',
         element:<AdminUsers/>
+      },
+      {
+        path:'/admin/edit-user',
+        element:<UserForm/>
       },
     ]
   }
