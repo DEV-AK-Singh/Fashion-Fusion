@@ -2,13 +2,11 @@
 
 ## [Visit Website Here..](https://fashion-fusion.dreel.co/)
 
-![Preview](Preview.png)
-
 ## Project Overview
 
 Fashion Fusion is a collaborative project aimed at developing a Myntra clone, incorporating various features to elevate the online shopping experience. Leveraging React.js for frontend development and Firebase for data storage, the project focuses on seamless navigation and intuitive user interfaces.
 
-## Key Features
+## Features
 
 - **Authentication System:** Implemented secure user authentication and authorization mechanisms.
 - **Admin Dashboard:** Streamlined product and order management capabilities for administrators.
@@ -18,8 +16,9 @@ Fashion Fusion is a collaborative project aimed at developing a Myntra clone, in
 - **Cart & Checkout:** Seamless purchase experience with cart management and secure checkout.
 - **Order Management & Tracking:** Efficient order placement, processing, and real-time tracking for users.
 
-## Screenshots
+## Previews
 
+![Preview](Preview.png)
 ![Preview1](Cart/2.png)
 ![Preview2](Cart/3.png)
 
